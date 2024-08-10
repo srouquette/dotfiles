@@ -9,10 +9,12 @@
 :: See https://www.chezmoi.io/docs/how-to/
 ::
 :: {{- /* This file supports Go's text/template language. */}}
+:: settings.json hash: {{ include "dot_config/windows_terminal/settings.json" | sha256sum }}
 
 @echo off
 
-set SRCFILE=%USERPROFILE%\.config\windows_terminal\settings.json
+set SRCFILE=%CHEZMOI_WORKING_TREE%/dot_config/windows_terminal/settings.json
+set SRCFILE=%SRCFILE:/=\%
 set DESTFILE=%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 
 :: Skip if application has not been installed.
@@ -23,17 +25,17 @@ FOR %%A in (%DESTFILE%) do (
 )
 
 :: Skip if destination is a symbolic link.
-dir %DESTFILE% | find "<SYMLINK>" > nul
+dir "%DESTFILE%" | find "<SYMLINK>" > nul
 IF %errorlevel% == 0 (
     exit 0
 )
 
 :: Skip if configuration files are identical.
-fc /b %SRCFILE% %DESTFILE% > nul
+fc /b "%SRCFILE%" "%DESTFILE%" > nul
 IF %errorlevel% == 0 (
     exit 0
 )
 
 :: Copy source file to destination.
-xcopy /fvy %SRCFILE% %DESTFILE%*
+xcopy /fvy "%SRCFILE%" "%DESTFILE%*"
 {{- end }}
