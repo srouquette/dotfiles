@@ -1,0 +1,18 @@
+packages:
+  scoop_buckets:
+    - name: extras
+    - name: okibcn_ScoopMaster
+      url: https://github.com/okibcn/ScoopMaster
+  scoop:
+    - main/7zip
+    - main/aria2
+    - main/difftastic
+    - okibcn_ScoopMaster/dotnet-7.0-desktopruntime
+    - extras/irfanview
+    - extras/paint.net
+    - extras/regedix
+    - extras/revouninstaller
+    - extras/shutup10
+    - extras/sysinternals
+    - extras/vlc
+    - extras/vscode

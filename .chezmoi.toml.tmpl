@@ -1,0 +1,49 @@
+{{ $name := promptStringOnce . "name" "Username" -}}
+{{ $email := promptStringOnce . "email" "Email Address" -}}
+
+[data]
+    name = {{ $name | quote }}
+    email = {{ $email | quote }}
+
+[edit]
+{{- if lookPath "code" }}
+    command = "code"
+    args = ["--wait"]
+{{- else if lookPath "nano" -}}
+    command = "nano"
+{{- end }}
+
+{{ if lookPath "difft" -}}
+[diff]
+    command = "difft"
+    args = [
+        "{{ "{{" }} .Destination {{ "}}" }}",
+        "{{ "{{" }} .Target {{ "}}" }}",
+        "--override", "*config:toml",
+        "--parse-error-limit", "100",
+    ]
+{{- else if lookPath "delta" -}}
+[diff]
+    pager = "delta"
+{{- end }}
+
+{{ if lookPath "meld" -}}
+[merge]
+    command = "meld"
+    args = [
+        "{{ "{{" }} .Target {{ "}}" }}",
+        "{{ "{{" }} .Source {{ "}}" }}",
+        "{{ "{{" }} .Destination {{ "}}" }}",
+        "--output"
+        "{{ "{{" }} .Source {{ "}}" }}",
+    ]
+{{- else if lookPath "code" -}}
+[merge]
+    command = "code"
+    args = ["--wait", "--merge",
+        "{{ "{{" }} .Destination {{ "}}" }}",
+        "{{ "{{" }} .Target {{ "}}" }}",
+        "{{ "{{" }} .Target {{ "}}" }}",
+        "{{ "{{" }} .Source {{ "}}" }}",
+    ]
+{{- end }}

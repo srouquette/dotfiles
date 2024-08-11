@@ -1,0 +1,7 @@
+{{ range .packages.scoop_buckets }}
+    {{ if hasKey . "url" -}}
+        scoop bucket add {{ .name | quote }} {{ .url | quote }}
+    {{- else -}}
+        scoop bucket add {{ .name | quote }}
+    {{- end }}
+{{- end }}

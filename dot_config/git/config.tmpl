@@ -1,0 +1,103 @@
+# -*-mode:gitconfig-*- vim:ft=gitconfig
+
+[user]
+name = {{ .name | quote }}
+email = {{ .email | quote }}
+
+[core]
+{{ if eq .chezmoi.os "windows" -}}
+autocrlf = "true"
+{{- else -}}
+autocrlf = "input"
+{{- end }}
+preloadindex = true
+fsmonitor = true
+fscache = true
+untrackedcache = true
+{{ if .chezmoi.config.edit.command -}}
+edit = "{{ .chezmoi.config.edit.command }}"
+{{- end }}
+{{ if .chezmoi.config.diff.pager -}}
+pager = "{{ .chezmoi.config.diff.pager }}"
+{{- end }}
+
+[feature]
+manyFiles = true
+
+[fsmonitor]
+allowRemote = true
+
+[status]
+# -> all, normal, no. default is all.
+showUntrackedFiles = "all"
+
+[color]
+status = true
+
+[pull]
+rebase = true
+
+[push]
+autoSetupRemote = true
+
+[rebase]
+autostash = true
+autosquash = true
+
+[pager]
+difftool = true
+
+[diff]
+mnemonicPrefix = true
+algorithm = "histogram"
+colorMoved = "default"
+
+[difftool]
+prompt = false
+{{ if .chezmoi.config.diff.command -}}
+tool = "{{ .chezmoi.config.diff.command }}"
+{{- end }}
+{{ if eq .chezmoi.config.diff.command "difft" -}}
+external = "difft"
+{{- end }}
+
+[difftool "difft"]
+cmd = 'difft "$LOCAL" "$REMOTE"'
+
+[difftool "meld"]
+cmd = 'meld "$LOCAL" "$REMOTE"'
+
+[difftool "code"]
+cmd = 'code --wait --diff "$LOCAL" "$REMOTE"'
+
+[merge]
+conflictstyle = "diff3"
+{{ if .chezmoi.config.merge.command -}}
+tool = "{{ .chezmoi.config.merge.command }}"
+{{- end }}
+
+[mergetool "meld"]
+# -> middle panel will be the merged file with conflicts
+cmd = 'meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"'
+# -> middle panel will be the base file without conflicts
+# cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+
+[mergetool "code"]
+# -> Original way before three-way merge shown commented out
+# cmd = code --wait $MERGED
+# -> For "Three-way merge"
+cmd = 'code --wait --merge "$REMOTE" "$LOCAL" "$BASE" "$MERGED"'
+
+[help]
+autocorrect = 20
+
+{{ if eq .chezmoi.config.diff.command "delta" -}}
+[interactive]
+diffFilter = "delta --color-only"
+
+[delta]
+navigate = true    # use n and N to move between diff sections
+{{- end }}
+
+[include]
+path = "aliases"

@@ -1,0 +1,7 @@
+files:
+  windows:
+    wt-quake:
+      enabled: true
+      name: "Run Windows Terminal in Quake Mode on starup"
+      src: "internals/windows/windows_terminal/Quake Terminal.lnk"
+      dst: "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/Quake Terminal.lnk"

@@ -1,0 +1,9 @@
+README.md
+internals
+internals/**
+
+{{ if ne .chezmoi.os "windows" }}
+dot_wslconfig
+AppData
+scripts/windows/**
+{{ end }}
