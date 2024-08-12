@@ -1,5 +1,5 @@
 {{ range $k, $v := .files.windows -}}
-    {{ if $v.enabled -}}
+    {{ if eq (get $v "enabled") true -}}
         {{ template "win-copy.bat" $v }}
     {{- end }}
 {{- end }}

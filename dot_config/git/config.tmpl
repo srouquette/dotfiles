@@ -14,8 +14,10 @@ preloadindex = true
 fsmonitor = true
 fscache = true
 untrackedcache = true
-{{ if .chezmoi.config.edit.command -}}
-edit = "{{ .chezmoi.config.edit.command }}"
+{{ if eq .chezmoi.config.edit.command "code" -}}
+editor = "code --wait"
+{{- else if .chezmoi.config.edit.command -}}
+editor = "{{ .chezmoi.config.edit.command }}"
 {{- end }}
 {{ if .chezmoi.config.diff.pager -}}
 pager = "{{ .chezmoi.config.diff.pager }}"
@@ -51,9 +53,6 @@ difftool = true
 mnemonicPrefix = true
 algorithm = "histogram"
 colorMoved = "default"
-
-[difftool]
-prompt = false
 {{ if .chezmoi.config.diff.command -}}
 tool = "{{ .chezmoi.config.diff.command }}"
 {{- end }}
@@ -61,14 +60,17 @@ tool = "{{ .chezmoi.config.diff.command }}"
 external = "difft"
 {{- end }}
 
+[difftool]
+prompt = false
+
 [difftool "difft"]
-cmd = 'difft "$LOCAL" "$REMOTE"'
+cmd = difft "$LOCAL" "$REMOTE"
 
 [difftool "meld"]
-cmd = 'meld "$LOCAL" "$REMOTE"'
+cmd = meld "$LOCAL" "$REMOTE"
 
 [difftool "code"]
-cmd = 'code --wait --diff "$LOCAL" "$REMOTE"'
+cmd = code --wait --diff "$LOCAL" "$REMOTE"
 
 [merge]
 conflictstyle = "diff3"
@@ -78,7 +80,7 @@ tool = "{{ .chezmoi.config.merge.command }}"
 
 [mergetool "meld"]
 # -> middle panel will be the merged file with conflicts
-cmd = 'meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"'
+cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 # -> middle panel will be the base file without conflicts
 # cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
 
@@ -86,7 +88,7 @@ cmd = 'meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"'
 # -> Original way before three-way merge shown commented out
 # cmd = code --wait $MERGED
 # -> For "Three-way merge"
-cmd = 'code --wait --merge "$REMOTE" "$LOCAL" "$BASE" "$MERGED"'
+cmd = code --wait --merge "$REMOTE" "$LOCAL" "$BASE" "$MERGED"
 
 [help]
 autocorrect = 20

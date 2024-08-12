@@ -1,14 +1,15 @@
-:: src: {{ .src }}
-:: hash: {{ .src | include | sha256sum }}
-
 @echo off
 
-set SRCFILE={{ joinPath "%CHEZMOI_SOURCE_DIR%" .src | osClean }}
-set DSTFILE={{ .dst | osClean }}
+:: refresh ? {{ get . "refresh" }}
+set SRCFILE={{ template "win-expandenv.bat" .src | osClean }}
+set DSTFILE={{ template "win-expandenv.bat" .dst | osClean }}
 
 :: Skip if application has not been installed.
-IF NOT EXIST "{{ osDir .dst }}" (
-    exit 0
+FOR %%A in ("%DSTFILE%") do (
+    IF NOT EXIST "%%~pA" (
+        echo "exit on exists %%~pA"
+        exit 0
+    )
 )
 
 :: Skip if destination is a symbolic link.

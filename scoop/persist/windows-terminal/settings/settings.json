@@ -46,8 +46,7 @@
             "adjustIndistinguishableColors": "never",
             "antialiasingMode": "cleartype",
             "bellStyle": "window",
-            "colorScheme": "Ros\u00e9 Pine",
-            "cursorShape": "bar",
+            "colorScheme": "rose-pine",
             "font":
             {
                 "face": "FiraCode Nerd Font Propo"
@@ -66,18 +65,10 @@
                 "name": "MINGW64 / MSYS2"
             },
             {
-                "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -ucrt64",
-                "guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
-                "hidden": true,
-                "icon": "C:/msys64/ucrt64.ico",
-                "name": "UCRT64 / MSYS2"
-            },
-            {
-                "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -clang64",
-                "guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d115}",
-                "hidden": true,
-                "icon": "C:/msys64/clang64.ico",
-                "name": "CLANG6464 / MSYS2"
+                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+                "hidden": false,
+                "name": "WSL (Debian)",
+                "source": "Windows.Terminal.Wsl"
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
@@ -88,7 +79,7 @@
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": true,
+                "hidden": false,
                 "name": "Windows PowerShell"
             }
         ]
@@ -188,27 +179,28 @@
             "yellow": "#C18301"
         },
         {
+            // https://windowsterminalthemes.dev/
+            // https://github.com/atomcorp/themes
+            "name": "rose-pine-dev",
+            "black": "#706e86",
+            "red": "#eb6f92",
+            "green": "#9ccfd8",
+            "yellow": "#f6c177",
+            "blue": "#31748f",
+            "purple": "#c4a7e7",
+            "cyan": "#ebbcba",
+            "white": "#e0def4",
+            "brightBlack": "#706e86",
+            "brightRed": "#eb6f92",
+            "brightGreen": "#9ccfd8",
+            "brightYellow": "#f6c177",
+            "brightBlue": "#31748f",
+            "brightPurple": "#c4a7e7",
+            "brightCyan": "#ebbcba",
+            "brightWhite": "#e0def4",
             "background": "#191724",
-            "black": "#26233A",
-            "blue": "#9CCFD8",
-            "brightBlack": "#6E6A86",
-            "brightBlue": "#9CCFD8",
-            "brightCyan": "#EBBCBA",
-            "brightGreen": "#31748F",
-            "brightPurple": "#C4A7E7",
-            "brightRed": "#EB6F92",
-            "brightWhite": "#E0DEF4",
-            "brightYellow": "#F6C177",
-            "cursorColor": "#555169",
-            "cyan": "#EBBCBA",
-            "foreground": "#E0DEF4",
-            "green": "#31748F",
-            "name": "Ros\u00e9 Pine",
-            "purple": "#C4A7E7",
-            "red": "#EB6F92",
-            "selectionBackground": "#2A2837",
-            "white": "#E0DEF4",
-            "yellow": "#F6C177"
+            "foreground": "#e0def4",
+            "selectionBackground": "#312f44"
         },
         {
             "background": "#002B36",
@@ -326,6 +318,29 @@
             "yellow": "#E0AF68"
         },
         {
+            "background": "#16161E",
+            "black": "#363B54",
+            "blue": "#7AA2F7",
+            "brightBlack": "#363B54",
+            "brightBlue": "#7AA2F7",
+            "brightCyan": "#7DCFFF",
+            "brightGreen": "#41A6B5",
+            "brightPurple": "#BB9AF7",
+            "brightRed": "#F7768E",
+            "brightWhite": "#ACB0D0",
+            "brightYellow": "#E0AF68",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#7DCFFF",
+            "foreground": "#787C99",
+            "green": "#41A6B5",
+            "name": "TokyoNight",
+            "purple": "#BB9AF7",
+            "red": "#F7768E",
+            "selectionBackground": "#FFFFFF",
+            "white": "#787C99",
+            "yellow": "#E0AF68"
+        },
+        {
             "background": "#000000",
             "black": "#000000",
             "blue": "#000080",
@@ -347,9 +362,82 @@
             "selectionBackground": "#FFFFFF",
             "white": "#C0C0C0",
             "yellow": "#808000"
+        },
+        {
+            // https://github.com/rose-pine/windows-terminal
+            "background": "#191724",
+            "black": "#26233A",
+            "blue": "#9CCFD8",
+            "brightBlack": "#6E6A86",
+            "brightBlue": "#9CCFD8",
+            "brightCyan": "#EBBCBA",
+            "brightGreen": "#31748F",
+            "brightPurple": "#C4A7E7",
+            "brightRed": "#EB6F92",
+            "brightWhite": "#E0DEF4",
+            "brightYellow": "#F6C177",
+            "cursorColor": "#555169",
+            "cyan": "#EBBCBA",
+            "foreground": "#E0DEF4",
+            "green": "#31748F",
+            "name": "rose-pine",
+            "purple": "#C4A7E7",
+            "red": "#EB6F92",
+            "selectionBackground": "#2A2837",
+            "white": "#E0DEF4",
+            "yellow": "#F6C177"
+        },
+        {
+            // https://github.com/rose-pine/windows-terminal
+            "name": "rose-pine-moon",
+
+            "cursorColor": "#59546d",
+            "selectionBackground": "#312f44",
+
+            "background": "#232136",
+            "foreground": "#e0def4",
+
+            "black": "#393552",
+            "blue": "#9ccfd8",
+            "cyan": "#ea9a97",
+            "green": "#3e8fb0",
+            "purple": "#c4a7e7",
+            "red": "#eb6f92",
+            "white": "#e0def4",
+            "yellow": "#f6c177",
+            "brightBlack": "#817c9c",
+            "brightBlue": "#9ccfd8",
+            "brightCyan": "#ea9a97",
+            "brightGreen": "#3e8fb0",
+            "brightPurple": "#c4a7e7",
+            "brightRed": "#eb6f92",
+            "brightWhite": "#e0def4",
+            "brightYellow": "#f6c177"
         }
     ],
-    "startOnUserLogin": false,
-    "themes": [],
-    "useAcrylicInTabRow": true
+    "theme": "rose-pine",
+    "themes":
+    [
+        {
+            "name": "rose-pine",
+            "tab":
+            {
+                "background": "#191724FF",
+                "iconStyle": "default",
+                "showCloseButton": "always",
+                "unfocusedBackground": "#00000000"
+            },
+            "tabRow":
+            {
+                "background": "#26233ACF",
+                "unfocusedBackground": "#26233A43"
+            },
+            "window":
+            {
+                "applicationTheme": "dark",
+                "experimental.rainbowFrame": false,
+                "useMica": false
+            }
+        }
+    ]
 }
