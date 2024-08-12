@@ -1,0 +1,36 @@
+# skip package discovery during diff
+if ("{{.chezmoi.args}}" -contains "diff") {
+    exit 0
+}
+if (!(Get-Command "scoop" -ErrorAction "Ignore")) {
+    Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+    exit 0
+}
+
+$newRepos = @{
+{{ range $k, $v := .packages.scoop.repositories -}}
+    {{$k | quote}} = "{{ $v | empty | ternary "" $v }}"
+{{ end -}}
+}
+
+$packages = Invoke-Command -ScriptBlock { scoop export } | ConvertFrom-Json
+
+$packages.buckets | ForEach-Object {
+    if ($newRepos.ContainsKey($_.Name)) {
+        $newRepos.Remove($_.Name)
+    }
+}
+
+$newRepos.GetEnumerator() | ForEach-Object {
+    if ($_.value) {
+        scoop bucket add $_.key $_.value
+    } else {
+        scoop bucket add $_.key
+    }
+}
+
+if ($newRepos.count) {
+    Write-Host scoop installed $newRepos.count new packages.
+} else {
+    Write-Host "scoop didn't install any new packages."
+}

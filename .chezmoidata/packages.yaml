@@ -1,9 +1,9 @@
 packages:
-  scoop_buckets:
-    - name: extras
-    - name: okibcn_ScoopMaster
-      url: https://github.com/okibcn/ScoopMaster
   scoop:
+    repositories:
+      extras:
+      okibcn_ScoopMaster: https://github.com/okibcn/ScoopMaster
+    apps:
     - main/7zip
     - main/aria2
     - main/difftastic
@@ -16,3 +16,4 @@ packages:
     - extras/sysinternals
     - extras/vlc
     - extras/vscode
+    - extras/windows-terminal

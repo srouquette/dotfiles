@@ -1,0 +1,6 @@
+{{ range $k, $v := .files.windows -}}
+    {{ if eq (get $v "enabled") true -}}
+        # srchash: {{ $v.src | replace "$Env:CHEZMOI_SOURCE_DIR" "" | include | sha256sum }}
+        {{- template "win-copy.ps1" $v }}
+    {{- end }}
+{{- end }}

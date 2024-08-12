@@ -1,9 +1,12 @@
-{{ $name := promptStringOnce . "name" "Username" -}}
-{{ $email := promptStringOnce . "email" "Email Address" -}}
+{{ $name := promptStringOnce . "email" "Username" "Syl ⏚" -}}
+{{ $email := promptStringOnce . "email" "Email Address" "rouquette@gmail.com" -}}
+{{- $choices := list "home" "work" -}}
+{{- $profile := promptChoiceOnce . "profile" "Which profile" $choices "home" -}}
 
 [data]
-    name = {{ $name | quote }}
-    email = {{ $email | quote }}
+    name = {{- $name | quote -}}
+    email = {{- $email | quote -}}
+    profile = {{- $profile | quote -}}
 
 [edit]
 {{- if lookPath "code" }}
