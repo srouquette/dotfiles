@@ -52,7 +52,6 @@
                 "face": "FiraCode Nerd Font Propo"
             },
             "opacity": 60,
-            "startingDirectory": "C:/msys64/home/%USERNAME%",
             "useAcrylic": true,
             "useAtlasEngine": true
         },
@@ -62,6 +61,7 @@
                 "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -shell zsh",
                 "guid": "{71160544-14d8-4194-af25-d05feeac7233}",
                 "icon": "C:/msys64/mingw64.ico",
+                "startingDirectory": "C:/msys64/home/%USERNAME%",
                 "name": "MINGW64 / MSYS2"
             },
             {
@@ -74,12 +74,14 @@
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "elevate": true,
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "startingDirectory": "%USERPROFILE%",
                 "name": "Invite de commandes (admin)"
             },
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
+                "startingDirectory": "%USERPROFILE%",
                 "name": "Windows PowerShell"
             }
         ]
@@ -430,7 +432,7 @@
             "tabRow":
             {
                 "background": "#26233ACF",
-                "unfocusedBackground": "#26233A43"
+                "unfocusedBackground": "#191724CF"
             },
             "window":
             {

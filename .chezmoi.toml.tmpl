@@ -1,18 +1,22 @@
-{{ $name := promptStringOnce . "email" "Username" "Syl ⏚" -}}
-{{ $email := promptStringOnce . "email" "Email Address" "rouquette@gmail.com" -}}
+{{- /* promptStringOnce is super slow and doesnt seem to work on my computer */ -}}
+{{- /* $name := promptStringOnce . "name" "Username" "Syl" */ -}}
+{{- /* $email := promptStringOnce . "email" "Email Address" "rouquette@gmail.com" */ -}}
 {{- $choices := list "home" "work" -}}
-{{- $profile := promptChoiceOnce . "profile" "Which profile" $choices "home" -}}
+{{- /* $profile := promptChoiceOnce . "profile" "Which profile" $choices "home" */ -}}
+
+sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
-    name = {{- $name | quote -}}
-    email = {{- $email | quote -}}
-    profile = {{- $profile | quote -}}
+    name = "Syl ⏚"
+    email = "srouquette@gmail.com"
+    profile = "profile"
 
+{{ if lookPath "code" -}}
 [edit]
-{{- if lookPath "code" }}
     command = "code"
     args = ["--wait"]
 {{- else if lookPath "nano" -}}
+[edit]
     command = "nano"
 {{- end }}
 
@@ -37,7 +41,7 @@
         "{{ "{{" }} .Target {{ "}}" }}",
         "{{ "{{" }} .Source {{ "}}" }}",
         "{{ "{{" }} .Destination {{ "}}" }}",
-        "--output"
+        "--output",
         "{{ "{{" }} .Source {{ "}}" }}",
     ]
 {{- else if lookPath "code" -}}

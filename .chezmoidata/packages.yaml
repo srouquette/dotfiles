@@ -9,7 +9,9 @@ packages:
     - main/difftastic
     - okibcn_ScoopMaster/dotnet-7.0-desktopruntime
     - extras/irfanview
+    - extras/meld
     - extras/paint.net
+    - main/python
     - extras/regedix
     - extras/revouninstaller
     - extras/shutup10
