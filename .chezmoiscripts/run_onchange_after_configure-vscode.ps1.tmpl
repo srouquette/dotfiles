@@ -1,0 +1,25 @@
+{{ if eq .os "linux" -}}
+#!/usr/bin/env bash
+set -eufo pipefail
+{{- end }}
+
+{{ $extensions := list
+     "DavidAnson.vscode-markdownlint"
+     "daylerees.rainglow"
+     "drewxs.tokyo-night-dark"
+     "EditorConfig.EditorConfig"
+     "enkia.tokyo-night"
+     "janisdd.vscode-edit-csv"
+     "juggernautjp.less-toml"
+     "mark-wiemer.vscode-autohotkey-plus-plus"
+     "mechatroner.rainbow-csv"
+     "ms-vscode.hexeditor"
+     "mvllow.rose-pine"
+     "naumovs.color-highlight"
+     "Tyriar.sort-lines"
+     "yzhang.markdown-all-in-one"
+-}}
+
+{{ range $extensions -}}
+code --force --install-extension {{ . }}
+{{ end -}}

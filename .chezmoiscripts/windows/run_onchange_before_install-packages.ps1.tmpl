@@ -10,6 +10,7 @@ if (!(Get-Command "scoop" -ErrorAction "Ignore")) {
 
 $buckets = @{
     "extras" = ""
+    "java" = ""
     "okibcn_ScoopMaster" = "https://github.com/okibcn/ScoopMaster"
 }
 
@@ -21,17 +22,23 @@ $apps = @{
     "irfanview" = "extras"
     "meld" = "extras"
     "paint.net" = "extras"
+    "powertoys" = "extras"
     "python" = "main"
-    "regedix" = "extras"
+    "regedix" = "https://raw.githubusercontent.com/srouquette/Extras/master/bucket/regedix.json"
     "revouninstaller" = "extras"
     "shutup10" = "extras"
     "sysinternals" = "extras"
     "vlc" = "extras"
     "vscode" = "extras"
     "windows-terminal" = "extras"
+{{ if eq .profile "work" -}}
+    "bruno" = "extras"
+    "idea" = "extras"
+    "temurin-lts-jdk" = "java"
+{{- end }}
 }
 
-# scoop export will return a json with buckets and apps installed
+# scoop export will return a json with buckets and apps installedq
 $export = Invoke-Command -ScriptBlock { scoop export } | ConvertFrom-Json
 
 # filter out existing buckets
@@ -57,7 +64,11 @@ $export.apps | ForEach-Object {
 }
 # install apps
 $apps.GetEnumerator() | ForEach-Object {
-    scoop install "$($_.Value)/$($_.Key)"
+    if ($_.Value.StartsWith("https://")) {
+        scoop install "$($_.Value)"
+    } else {
+        scoop install "$($_.Value)/$($_.Key)"
+    }
 }
 
 if ($buckets.Count -ne 0 -or $apps.Count -ne 0) {
