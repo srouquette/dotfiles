@@ -9,5 +9,19 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 # then install chezmoi and the dotfiles
 scoop install chezmoi
+```
+
+## Linux
+
+#### Arch/Msys2
+
+```bash
+pacman -S chezmoi
+```
+
+
+## Install: run chezmoi
+
+```shell
 chezmoi init srouquette --apply
 ```

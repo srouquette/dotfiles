@@ -1,5 +1,5 @@
 # skip package discovery during diff
-if ("{{.chezmoi.args}}" -contains "diff") {
+if ($MyInvocation.Line -contains "diff") {
     exit 0
 }
 # check if scoop is installed

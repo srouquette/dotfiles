@@ -1,8 +1,8 @@
 README.md
 internals/**
 
-{{ if ne .chezmoi.os "windows" }}
+{{ if ne .os "windows" }}
 .chezmoiscripts/windows/**
-dot_wslconfig
 scoop/**
+.wslconfig
 {{ end }}

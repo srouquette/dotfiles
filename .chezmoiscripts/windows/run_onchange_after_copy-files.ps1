@@ -22,14 +22,14 @@ function Copy-File {
         }
     }
     else {
-        # Skip if application has not been installed.
+        # Check the parent directory and skip if application has not been installed.
         if (!($dstfile | Split-Path)) {
             exit 0
         }
     }
 
     # Copy source file to destination.
-    xcopy /fvy $srcfile "$dstfile*"
+    xcopy /fvy "$srcfile" "$dstfile*"
 }
 
 # Run Windows Terminal in Quake Mode on startup

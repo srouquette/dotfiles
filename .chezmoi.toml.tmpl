@@ -4,12 +4,19 @@
 {{- $choices := list "home" "work" -}}
 {{- /* $profile := promptChoiceOnce . "profile" "Which profile" $choices "home" */ -}}
 
-sourceDir = {{ .chezmoi.sourceDir | quote }}
-
 [data]
     name = "Syl ⏚"
     email = "srouquette@gmail.com"
     profile = "profile"
+{{- if (and (eq .chezmoi.os "windows") (has (env "MSYSTEM") (list "MSYS2" "MINGW64" "UCRT64" "CLANG64"))) }}
+    os = "msys2"
+    distrib = {{ env "MSYSTEM" | quote -}}
+{{ else }}
+    os = {{ .chezmoi.os | quote -}}
+{{- end }}
+{{ if hasKey .chezmoi.osRelease "id" -}}
+    distrib = {{ .chezmoi.osRelease.id | quote -}}
+{{- end }}
 
 {{ if lookPath "code" -}}
 [edit]

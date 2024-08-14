@@ -53,8 +53,9 @@
             },
             "opacity": 60,
             "useAcrylic": true,
-            "useAtlasEngine": true
-        },
+            "useAtlasEngine": true,
+            "closeOnExit" : true
+    },
         "list":
         [
             {
@@ -62,7 +63,10 @@
                 "guid": "{71160544-14d8-4194-af25-d05feeac7233}",
                 "icon": "C:/msys64/mingw64.ico",
                 "startingDirectory": "C:/msys64/home/%USERNAME%",
-                "name": "MINGW64 / MSYS2"
+                "name": "MINGW64 / MSYS2",
+                "environment": {
+                    "MSYS": "winsymlinks:nativestrict"
+                }
             },
             {
                 "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
@@ -71,18 +75,18 @@
                 "source": "Windows.Terminal.Wsl"
             },
             {
-                "commandline": "%SystemRoot%\\System32\\cmd.exe",
-                "elevate": true,
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "startingDirectory": "%USERPROFILE%",
-                "name": "Invite de commandes (admin)"
-            },
-            {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "startingDirectory": "%USERPROFILE%",
                 "name": "Windows PowerShell"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "elevate": true,
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "startingDirectory": "%USERPROFILE%",
+                "name": "Invite de commandes (admin)"
             }
         ]
     },
