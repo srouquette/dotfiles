@@ -12,6 +12,7 @@ pacman_packages=(
 pacboy_packages=(
     bat:p
     fzf:p
+    jq:p
     lsd:p
     python-tldr:p
     starship:p

@@ -44,6 +44,7 @@
         "--override", "*config:toml",
         "--parse-error-limit", "100",
     ]
+    pager = "less -FX"
 {{- else if lookPath "delta" -}}
 [diff]
     pager = "delta"
