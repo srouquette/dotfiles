@@ -1,33 +1,36 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
-if [ "$MSYSTEM" -eq "MINGW64" ]; then
-  [ pacboy -Q "git:p" &>/dev/null ] && exit 0
+if [ "$MSYSTEM" = "MINGW64" ]; then
+  # remove the other git package
+  pacman -Qqs ^git$ &>/dev/null && pacman -Rsnc --noconfirm git
 
-  # remove other git package
-  if pacman -Q "git" &>/dev/null; then
-    echo pacman -Rsnu "git"
-  fi
+  # install pactoys, for pacboy, if it wasn't already installed
+  pacman -Qqs pactoys &>/dev/null || pacman -S --noconfirm pactoys
 
+  # exit if git is already installed
+  pacboy -Qqs git:x &>/dev/null && exit 0
+
+  # add git-for-windows repo (custom build)
   REPO_NAME='git-for-windows'
   REPO_ENTRY="[$REPO_NAME]
   Server = https://wingit.blob.core.windows.net/x86-64"
 
   if ! grep -q "\[${REPO_NAME}\]" /etc/pacman.conf; then
-    echo -e '\n${REPO_ENTRY}' # >> /etc/pacman.conf
+    echo -e "\n${REPO_ENTRY} " >> /etc/pacman.conf
+    pacman -Sy --noconfirm
   fi
 
-  echo pacman -Sy --noconfirm
-  echo pacboy -S git:p
+  pacboy -S --noconfirm git:x
+
 
 else
+  # exit if a version of git is already installed
+  pacman -Qs git &>/dev/null && exit 0
 
-  [ pacman -Q "git" &>/dev/null ] && exit 0
-  [ pacboy -Q "git:p" &>/dev/null ] && exit 0
+  echo "msys2 is running with the environment ${MSYSTEM}."
+  echo 'Installing git for this environment instead of the faster git-for-windows, which is only available on MINGW64.'
 
-  echo -e 'msys2 is running with the environment ${MSYSTEM}.'
-  echo 'it will install git for this environment instead of the faster git-for-windows, which is only available on MINGW64.'
-
-  echo pacman -S git
+  pacman -S --noconfirm git
 
 fi

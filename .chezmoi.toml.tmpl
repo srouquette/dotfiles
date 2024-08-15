@@ -75,6 +75,8 @@
 
 
 {{ if ne $os "windows" -}}
+[interpreters.sh]
+    command = "bash"
 [interpreters.ps1]
     command = "bash"
 {{- end }}
