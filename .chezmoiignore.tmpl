@@ -1,8 +1,12 @@
 README.md
 internals/**
 
-{{ if ne .os "windows" }}
+{{ if ne .os "windows" -}}
 .chezmoiscripts/windows/**
 scoop/**
 .wslconfig
-{{ end }}
+{{- end }}
+
+{{ if ne .os "msys2" -}}
+.chezmoiscripts/msys2/**
+{{- end }}

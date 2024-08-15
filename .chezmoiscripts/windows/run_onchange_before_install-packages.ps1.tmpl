@@ -1,3 +1,4 @@
+
 # skip package discovery during diff
 if ($MyInvocation.Line -contains "diff") {
     exit 0
@@ -6,6 +7,14 @@ if ($MyInvocation.Line -contains "diff") {
 if (!(Get-Command "scoop" -ErrorAction "Ignore")) {
     Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
     exit 0
+}
+
+scoop config aria2-enabled true
+
+$scoopShim = (scoop config shim)
+if ("$scoopShim" -ne 'kiennq') {
+    scoop config shim kiennq
+    scoop reset *
 }
 
 $buckets = @{
