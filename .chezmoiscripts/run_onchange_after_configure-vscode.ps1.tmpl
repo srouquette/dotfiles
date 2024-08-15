@@ -1,13 +1,14 @@
-{{ if eq .os "linux" -}}
+{{ if ne .os "windows" -}}
 #!/usr/bin/env bash
 set -eufo pipefail
 {{- end }}
 
 {{ $extensions := list
-     "DavidAnson.vscode-markdownlint"
+     "casualjim.gotemplate"
+     "davidanson.vscode-markdownlint"
      "daylerees.rainglow"
      "drewxs.tokyo-night-dark"
-     "EditorConfig.EditorConfig"
+     "editorconfig.editorconfig"
      "enkia.tokyo-night"
      "janisdd.vscode-edit-csv"
      "juggernautjp.less-toml"
@@ -16,10 +17,21 @@ set -eufo pipefail
      "ms-vscode.hexeditor"
      "mvllow.rose-pine"
      "naumovs.color-highlight"
-     "Tyriar.sort-lines"
+     "tyriar.sort-lines"
      "yzhang.markdown-all-in-one"
 -}}
 
-{{ range $extensions -}}
+echo "installing vscode extensions..."
+{{- $vscode_ext := output "code" "--list-extensions" -}}
+{{- $filtered := (list) -}}
+{{- range $extensions -}}
+    {{- if not (contains . $vscode_ext) -}}
+        {{- $filtered = append $filtered . -}}
+    {{- end -}}
+{{- end -}}
+
+
+{{ range $filtered -}}
 code --force --install-extension {{ . }}
-{{ end -}}
+{{- end }}
+echo "done."
