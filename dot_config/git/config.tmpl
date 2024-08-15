@@ -5,6 +5,7 @@ name = {{ .name | quote }}
 email = {{ .email | quote }}
 
 [core]
+pager = "cat"
 {{ if eq .chezmoi.os "windows" -}}
 autocrlf = "true"
 {{- else -}}
@@ -50,6 +51,7 @@ autosquash = true
 difftool = true
 
 [diff]
+pager = "less -FX"
 mnemonicPrefix = true
 algorithm = "histogram"
 colorMoved = "default"
@@ -98,6 +100,7 @@ autocorrect = 20
 diffFilter = "delta --color-only"
 
 [delta]
+features = "mellow-barbet"
 navigate = true    # use n and N to move between diff sections
 {{- end }}
 

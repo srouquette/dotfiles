@@ -9,7 +9,7 @@ if [ "$MSYSTEM" = "MINGW64" ]; then
   pacman -Qqs pactoys &>/dev/null || pacman -S --noconfirm pactoys
 
   # exit if git is already installed
-  pacboy -Qqs git:x &>/dev/null && exit 0
+  pacboy -Qqs git:p &>/dev/null && exit 0
 
   # add git-for-windows repo (custom build)
   REPO_NAME='git-for-windows'
@@ -21,7 +21,7 @@ if [ "$MSYSTEM" = "MINGW64" ]; then
     pacman -Sy --noconfirm
   fi
 
-  pacboy -S --noconfirm git:x
+  pacboy -S --noconfirm git:p
 
 
 else
