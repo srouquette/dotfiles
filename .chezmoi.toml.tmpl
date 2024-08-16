@@ -15,10 +15,6 @@
     email = "srouquette@gmail.com"
     profile = "home"
     os = {{ $os | quote }}
-    # git-for-windows has to run in MINGW64 terminal,
-    # but other packages from another env may run just fine
-    # we will install those package from this system
-    msystem = "UCRT64"
 
 [data.packages]
     common = [
@@ -35,11 +31,9 @@
         "fzf",
         "jq",
         "python-tldr",
+        "ripgrep",
         "starship",
         "vivid",
-    ]
-    aliases = [
-        "tldr"
     ]
 
 
