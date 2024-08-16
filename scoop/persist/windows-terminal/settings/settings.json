@@ -31,7 +31,7 @@
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{71160544-14d8-4194-af25-d05feeac7230}",
+    "defaultProfile": "{71160544-14d8-4194-af25-d05feeac7233}",
     "multiLinePasteWarning": false,
     "newTabMenu": 
     [
@@ -65,7 +65,7 @@
                     "MSYS": "winsymlinks:nativestrict"
                 },
                 "guid": "{71160544-14d8-4194-af25-d05feeac7233}",
-                "hidden": true,
+                "hidden": false,
                 "icon": "C:/msys64/ucrt64.ico",
                 "name": "UCRT64 / MSYS2",
                 "startingDirectory": "C:/msys64/home/%USERNAME%"
@@ -77,7 +77,7 @@
                     "MSYS": "winsymlinks:nativestrict"
                 },
                 "guid": "{71160544-14d8-4194-af25-d05feeac7230}",
-                "hidden": false,
+                "hidden": true,
                 "icon": "C:/msys64/mingw64.ico",
                 "name": "MINGW64 / MSYS2",
                 "startingDirectory": "C:/msys64/home/%USERNAME%"
