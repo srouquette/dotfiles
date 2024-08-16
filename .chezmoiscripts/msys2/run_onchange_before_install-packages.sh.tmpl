@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+packages=( {{ range .packages.common }}'{{ . }}' {{ end }})
+prefixed_packages=( {{ range .packages.prefixed }}'{{ . }}' {{ end }})
+
+# resolve prefixed_packages with the prefix used for their installation
+{{ if eq .msystem "UCRT64" -}}
+prefix='mingw-w64-ucrt-x86_64'
+{{- else if eq .msystem "CLANG64" -}}
+prefix='mingw-w64-clang-x86_64'
+{{- else -}}
+prefix=$MINGW_PACKAGE_PREFIX
+{{- end }}
+for pkg in "${prefixed_packages[@]}"; do
+  fqn_packages+=( ${prefix}-${pkg} )
+done
+
+# add common packages
+fqn_packages=()
+for pkg in "${packages[@]}"; do
+  fqn_packages+=( ${pkg} )
+done
+
+# get installed packages
+installed=$(pacman -Qqe)
+
+# filter out packages that are already installed
+filtered=()
+for pkg in "${fqn_packages[@]}"; do
+  [[ $installed == *${pkg}* ]] || filtered+=($pkg)
+done
+
+# --assume-installed git because was installed previously
+[ ${#filtered[@]} -eq 0 ] || pacman -Ss --noconfirm --assume-installed git ${filtered[@]}

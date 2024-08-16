@@ -1,0 +1,19 @@
+{{- $msys_dir := "WD" | env | osDir | osDir | osDir | replace "\\" "/" -}}
+{{- $win_dir := (list $msys_dir ( .msystem | lower ) "bin" | join "/" ) -}}
+{{- $bin_dir := (list "" ( .msystem | lower ) "bin" | join "/" ) -}}
+
+{{- range .packages.prefixed -}}
+    {{- if lookPath (list $win_dir . | join "/") }}
+if ! command -v "{{.}}" &>/dev/null; then
+    alias {{.}}="{{ (list $bin_dir . | join "/") }}"
+fi
+{{- end -}}
+
+{{- end -}}
+{{- range .packages.aliases -}}
+    {{- if lookPath (list $win_dir . | join "/") }}
+if ! command -v "{{.}}" &>/dev/null; then
+    alias {{.}}="{{ (list $bin_dir . | join "/") }}"
+fi
+    {{- end -}}
+{{- end -}}
