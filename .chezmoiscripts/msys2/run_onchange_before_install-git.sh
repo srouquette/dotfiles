@@ -21,8 +21,3 @@ if ! grep -q "\[${REPO_NAME}\]" /etc/pacman.conf; then
 fi
 
 pacboy -S --noconfirm git:x
-
-alias git='PKG_CONFIG_PATH=/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig && \
-PKG_CONFIG_SYSTEM_INCLUDE_PATH=/mingw64/include && \
-PKG_CONFIG_SYSTEM_LIBRARY_PATH=/mingw64/lib && \
-git'
