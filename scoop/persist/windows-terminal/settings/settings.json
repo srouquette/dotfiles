@@ -59,8 +59,19 @@
         "list":
         [
             {
-                "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -shell zsh",
+                "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -ucrt64 -shell zsh",
                 "guid": "{71160544-14d8-4194-af25-d05feeac7233}",
+                "icon": "C:/msys64/ucrt64.ico",
+                "startingDirectory": "C:/msys64/home/%USERNAME%",
+                "name": "UCRT64 / MSYS2",
+                "environment": {
+                    "MSYS": "winsymlinks:nativestrict"
+                }
+            },
+            {
+                "hidden": true,
+                "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -shell zsh",
+                "guid": "{71160544-14d8-4194-af25-d05feeac7230}",
                 "icon": "C:/msys64/mingw64.ico",
                 "startingDirectory": "C:/msys64/home/%USERNAME%",
                 "name": "MINGW64 / MSYS2",
