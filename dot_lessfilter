@@ -76,13 +76,9 @@ elif [ "$kind" = vnd.sqlite3 ]; then
 # https://github.com/wofr06/lesspipe/pull/107
 elif [ -d "$1" ]; then
 	if has_cmd eza; then
-		if [ $COLUMNS -ge 100 ]; then
-			l "$1"
-		else
-			ll "$1"
-		fi
+		eza -hl --icons --color=always --group-directories-first --octal-permissions -aa --no-git "$1"
 	elif has_cmd exa; then
-		exa -hl --color=always --icons "$1"
+		exa -hl --icons --color=always --git "$1"
 	elif has_cmd lsd; then
 		lsd -l --header --color=always "$1"
 	fi
