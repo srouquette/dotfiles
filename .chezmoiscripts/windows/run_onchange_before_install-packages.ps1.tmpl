@@ -18,32 +18,19 @@ if ("$scoopShim" -ne 'kiennq') {
 }
 
 $buckets = @{
-    "extras" = ""
-    "java" = ""
-    "okibcn_ScoopMaster" = "https://github.com/okibcn/ScoopMaster"
+{{- range $k, $v := .packages.buckets }}
+    {{ $k | quote }} = {{ $v | quote }}
+{{- end }}
 }
 
 $apps = @{
-    "7zip" = "main"
-    "aria2" = "main"
-    "difftastic" = "main"
-    "dotnet-7.0-desktopruntime" = "okibcn_ScoopMaster"
-    "irfanview" = "extras"
-    "meld" = "extras"
-    "paint.net" = "extras"
-    "powertoys" = "extras"
-    "python" = "main"
-    "regedix" = "https://raw.githubusercontent.com/srouquette/Extras/master/bucket/regedix.json"
-    "revouninstaller" = "extras"
-    "shutup10" = "extras"
-    "sysinternals" = "extras"
-    "vlc" = "extras"
-    "vscode" = "extras"
-    "windows-terminal" = "extras"
+{{- range $k, $v := .packages.common }}
+    {{ $k | quote }} = {{ $v | quote }}
+{{- end }}
 {{ if eq .profile "work" -}}
-    "bruno" = "extras"
-    "idea" = "extras"
-    "temurin-lts-jdk" = "java"
+{{- range $k, $v := .packages.work }}
+    {{ $k | quote }} = {{ $v | quote }}
+{{- end }}
 {{- end }}
 }
 

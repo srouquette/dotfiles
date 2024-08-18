@@ -1,0 +1,22 @@
+[packages]
+    common = [
+        "pactoys",
+        "openssh",
+        "unzip",
+        "zsh",
+    ]
+    # noteworthy cli editors: micro helix
+    prefixed = [
+        "bat",
+        "ca-certificates",
+        "eza",
+        "fd",
+        "fzf",
+        "gdu",
+        "jq",
+        "python-tldr",
+        "ripgrep",
+        "starship",
+        "vivid",
+        "zoxide",
+    ]

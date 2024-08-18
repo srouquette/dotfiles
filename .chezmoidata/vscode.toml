@@ -1,0 +1,19 @@
+[vscode]
+    extensions = [
+        "casualjim.gotemplate",
+        "davidanson.vscode-markdownlint",
+        "daylerees.rainglow",
+        "drewxs.tokyo-night-dark",
+        "editorconfig.editorconfig",
+        "enkia.tokyo-night",
+        "esbenp.prettier-vscode",
+        "janisdd.vscode-edit-csv",
+        "juggernautjp.less-toml",
+        "mark-wiemer.vscode-autohotkey-plus-plus",
+        "mechatroner.rainbow-csv",
+        "ms-vscode.hexeditor",
+        "mvllow.rose-pine",
+        "naumovs.color-highlight",
+        "tyriar.sort-lines",
+        "yzhang.markdown-all-in-one"
+    ]

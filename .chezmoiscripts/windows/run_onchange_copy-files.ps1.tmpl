@@ -32,6 +32,6 @@ function Copy-File {
     xcopy /fvy "$srcfile" "$dstfile*"
 }
 
-# Run Windows Terminal in Quake Mode on startup
-Copy-File   "$Env:CHEZMOI_SOURCE_DIR/internals/Windows/Startup/Quake Terminal.lnk" `
-            "$Env:USERPROFILE/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Quake Terminal.lnk"
+{{- range .copyfiles -}}
+Copy-File {{ .src | quote }} {{ .dst | quote }}
+{{- end -}}

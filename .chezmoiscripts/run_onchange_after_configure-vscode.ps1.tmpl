@@ -3,29 +3,10 @@
 set -eufo pipefail
 {{- end }}
 
-{{ $extensions := list
-     "casualjim.gotemplate"
-     "davidanson.vscode-markdownlint"
-     "daylerees.rainglow"
-     "drewxs.tokyo-night-dark"
-     "editorconfig.editorconfig"
-     "enkia.tokyo-night"
-     "esbenp.prettier-vscode"
-     "janisdd.vscode-edit-csv"
-     "juggernautjp.less-toml"
-     "mark-wiemer.vscode-autohotkey-plus-plus"
-     "mechatroner.rainbow-csv"
-     "ms-vscode.hexeditor"
-     "mvllow.rose-pine"
-     "naumovs.color-highlight"
-     "tyriar.sort-lines"
-     "yzhang.markdown-all-in-one"
--}}
-
 echo "installing vscode extensions..."
 {{- $vscode_ext := output "code" "--list-extensions" -}}
 {{- $filtered := (list) -}}
-{{- range $extensions -}}
+{{- range .vscode.extensions -}}
     {{- if not (contains . $vscode_ext) -}}
         {{- $filtered = append $filtered . -}}
     {{- end -}}
