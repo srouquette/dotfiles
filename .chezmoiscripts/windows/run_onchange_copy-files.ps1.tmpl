@@ -32,6 +32,6 @@ function Copy-File {
     xcopy /fvy "$srcfile" "$dstfile*"
 }
 
-{{- range .copyfiles -}}
+{{- range .windows.copyfiles -}}
 Copy-File {{ .src | quote }} {{ .dst | quote }}
 {{- end -}}

@@ -3,14 +3,13 @@ internals/**
 
 {{ if ne .os "windows" -}}
 .chezmoiscripts/windows/**
-.chezmoidata/windows*
+.chezmoidata/windows**
 scoop/**
 .wslconfig
 {{- end }}
 
 {{ if ne .os "msys2" -}}
 .chezmoiscripts/msys2/**
-.chezmoidata/msys2*
 .config/zsh/**
 .lessfilter
 {{- end }}

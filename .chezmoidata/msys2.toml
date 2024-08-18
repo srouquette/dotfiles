@@ -1,4 +1,4 @@
-[packages]
+[msys2.packages]
     common = [
         "pactoys",
         "openssh",

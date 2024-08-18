@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
-packages=( {{ range .packages.common }}'{{ . }}' {{ end }})
-prefixed_packages=( {{ range .packages.prefixed }}'{{ . }}' {{ end }})
+packages=( {{ range .msys2.packages.common }}'{{ . }}' {{ end }})
+prefixed_packages=( {{ range .msys2.packages.prefixed }}'{{ . }}' {{ end }})
 
 # resolve prefixed_packages with the prefix used for their installation
 {{ if eq (env "MSYSTEM") "UCRT64" -}}

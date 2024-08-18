@@ -18,17 +18,17 @@ if ("$scoopShim" -ne 'kiennq') {
 }
 
 $buckets = @{
-{{- range $k, $v := .packages.buckets }}
+{{- range $k, $v := .windows.packages.buckets }}
     {{ $k | quote }} = {{ $v | quote }}
 {{- end }}
 }
 
 $apps = @{
-{{- range $k, $v := .packages.common }}
+{{- range $k, $v := .windows.packages.common }}
     {{ $k | quote }} = {{ $v | quote }}
 {{- end }}
 {{ if eq .profile "work" -}}
-{{- range $k, $v := .packages.work }}
+{{- range $k, $v := .windows.packages.work }}
     {{ $k | quote }} = {{ $v | quote }}
 {{- end }}
 {{- end }}

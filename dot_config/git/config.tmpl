@@ -50,7 +50,6 @@ autosquash = true
 difftool = true
 
 [diff]
-pager = "less -FX"
 mnemonicPrefix = true
 algorithm = "histogram"
 colorMoved = "default"
@@ -94,7 +93,7 @@ cmd = code --wait --merge "$REMOTE" "$LOCAL" "$BASE" "$MERGED"
 [help]
 autocorrect = 20
 
-{{ if eq .chezmoi.config.diff.command "delta" -}}
+{{ if eq .chezmoi.config.diff.pager "delta" -}}
 [interactive]
 diffFilter = "delta --color-only"
 
@@ -105,3 +104,4 @@ navigate = true    # use n and N to move between diff sections
 
 [include]
 path = "aliases"
+path = "themes.gitconfig"
