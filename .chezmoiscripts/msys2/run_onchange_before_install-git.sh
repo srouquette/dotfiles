@@ -4,9 +4,6 @@ set -eufo pipefail
 if [ "$MSYSTEM" = 'MINGW64' ]; then
   pacboy -Qqs git:x &>/dev/null && exit 0
 
-  # remove the git package from the main repo
-  pacman -Qqs ^git$ &>/dev/null && pacman -Rsnc --noconfirm git
-
   # install pactoys, for pacboy, if it wasn't already installed
   pacman -Qqs pactoys &>/dev/null || pacman -S --noconfirm pactoys
 
@@ -24,11 +21,6 @@ if [ "$MSYSTEM" = 'MINGW64' ]; then
 else
 
   pacman -Qqs '^git$' &>/dev/null && exit 0
-  pacboy -Qqs 'git:x' &>/dev/null && exit 0
-
-  echo "msys2 is running with the environment ${MSYSTEM}."
-  echo 'it will install git for this environment instead of the faster git-for-windows, which is only available on MINGW64.'
-
   pacman -S --noconfirm git
 
 fi
