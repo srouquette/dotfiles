@@ -9,6 +9,7 @@
     prefixed = [
         "bat",
         "ca-certificates",
+        "delta",
         "eza",
         "fd",
         "fzf",
