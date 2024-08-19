@@ -5,7 +5,9 @@ packages=( {{ range .msys2.packages.common }}'{{ . }}' {{ end }})
 prefixed_packages=( {{ range .msys2.packages.prefixed }}'{{ . }}' {{ end }})
 
 # resolve prefixed_packages with the prefix used for their installation
-{{ if eq (env "MSYSTEM") "UCRT64" -}}
+{{ if eq (env "MSYSTEM") "MINGW64" -}}
+prefix='mingw-w64-x86_64'
+{{- else if eq (env "MSYSTEM") "UCRT64" -}}
 prefix='mingw-w64-ucrt-x86_64'
 {{- else if eq (env "MSYSTEM") "CLANG64" -}}
 prefix='mingw-w64-clang-x86_64'
