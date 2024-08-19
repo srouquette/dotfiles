@@ -7,6 +7,7 @@
     ]
     # noteworthy cli editors: micro helix
     prefixed = [
+        "7zip",
         "bat",
         "ca-certificates",
         "delta",
