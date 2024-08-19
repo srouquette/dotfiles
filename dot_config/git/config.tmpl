@@ -19,7 +19,9 @@ editor = "code --wait"
 {{- else if .chezmoi.config.edit.command -}}
 editor = "{{ .chezmoi.config.edit.command }}"
 {{- end }}
-{{ if .chezmoi.config.diff.pager -}}
+{{ if eq .chezmoi.config.diff.pager "delta" -}}
+pager = "delta --width=${FZF_PREVIEW_COLUMNS:--0}"
+{{- else if .chezmoi.config.diff.pager -}}
 pager = "{{ .chezmoi.config.diff.pager }}"
 {{- end }}
 
