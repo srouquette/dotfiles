@@ -12,15 +12,17 @@
         <key>background</key>
         <string>#191724</string>
         <key>caret</key>
-        <string>#524f67</string>
+        <string>#5f005f</string>
         <key>foreground</key>
         <string>#e0def4</string>
         <key>invisibles</key>
-        <string>#1f1d2e</string>
+        <string>#5f005f</string>
         <key>lineHighlight</key>
-        <string>#21202e</string>
+        <string>#005f5f</string>
         <key>selection</key>
-        <string>#403d52</string>
+        <string>#5f005f</string>
+        <key>gutterForeground</key>
+        <string>#8976a3</string>
       </dict>
     </dict>
     <dict>
