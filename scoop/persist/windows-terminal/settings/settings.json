@@ -1,10 +1,10 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
+    "actions":
     [
         {
-            "command": 
+            "command":
             {
                 "action": "copy",
                 "singleLine": false
@@ -16,7 +16,7 @@
             "keys": "ctrl+v"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "auto",
@@ -33,34 +33,39 @@
     "copyOnSelect": false,
     "defaultProfile": "{71160544-14d8-4194-af25-d05feeac7233}",
     "multiLinePasteWarning": false,
-    "newTabMenu": 
+    "newTabMenu":
     [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "adjustIndistinguishableColors": "never",
             "antialiasingMode": "cleartype",
             "bellStyle": "window",
             "closeOnExit": "graceful",
             "colorScheme": "rose-pine",
-            "font": 
+            "font":
             {
                 "face": "FiraCode Nerd Font Propo"
             },
+            // "cursorShape": "vintage",
+            "backgroundImage": "%USERPROFILE%/.config/windows-terminal/xr-lsdt-lefty.png",
+            "backgroundImageStretchMode": "none",
+            "backgroundImageAlignment": "topRight",
+            "backgroundImageOpacity": 0.05,
             "opacity": 60,
             "useAcrylic": true,
             "useAtlasEngine": true
         },
-        "list": 
+        "list":
         [
             {
                 "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -ucrt64 -shell zsh",
-                "environment": 
+                "environment":
                 {
                     "MSYS": "winsymlinks:nativestrict"
                 },
@@ -72,7 +77,7 @@
             },
             {
                 "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -shell zsh",
-                "environment": 
+                "environment":
                 {
                     "MSYS": "winsymlinks:nativestrict"
                 },
@@ -98,7 +103,7 @@
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#0C0C0C",
@@ -424,23 +429,23 @@
         }
     ],
     "theme": "rose-pine",
-    "themes": 
+    "themes":
     [
         {
             "name": "rose-pine",
-            "tab": 
+            "tab":
             {
                 "background": "#191724FF",
                 "iconStyle": "default",
                 "showCloseButton": "always",
                 "unfocusedBackground": "#00000000"
             },
-            "tabRow": 
+            "tabRow":
             {
                 "background": "#26233ACF",
                 "unfocusedBackground": "#191724CF"
             },
-            "window": 
+            "window":
             {
                 "applicationTheme": "dark",
                 "experimental.rainbowFrame": false,

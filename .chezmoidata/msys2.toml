@@ -9,6 +9,7 @@
     prefixed = [
         "7zip",
         "bat",
+        "bc",
         "ca-certificates",
         "delta",
         "eza",
