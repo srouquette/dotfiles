@@ -53,11 +53,11 @@
                 "face": "FiraCode Nerd Font Propo"
             },
             // "cursorShape": "vintage",
-            "backgroundImage": "%USERPROFILE%/.config/windows-terminal/xr-lsdt-lefty.png",
-            "backgroundImageStretchMode": "none",
-            "backgroundImageAlignment": "topRight",
-            "backgroundImageOpacity": 0.05,
-            "opacity": 60,
+            "backgroundImage": "%USERPROFILE%/.config/windows-terminal/rose-pine-bg.jpg",
+            // "backgroundImageStretchMode": "fill",
+            // "backgroundImageAlignment": "topRight",
+            "backgroundImageOpacity": 0.2,
+            "opacity": 0,
             "useAcrylic": true,
             "useAtlasEngine": true
         },
