@@ -1,9 +1,11 @@
 README.md
+LICENSE.md
 internals/**
 
 {{ if ne .os "windows" -}}
 .chezmoiscripts/windows/**
-.chezmoidata/windows**
+.chezmoidata/windows*
+.config/windows*
 AppData/**
 scoop/**
 .wslconfig
@@ -12,5 +14,6 @@ scoop/**
 {{ if ne .os "msys2" -}}
 .chezmoiscripts/msys2/**
 .config/zsh/**
+.config/bat
 .lessfilter
 {{- end }}
