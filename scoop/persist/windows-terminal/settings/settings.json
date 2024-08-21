@@ -57,7 +57,7 @@
             // "backgroundImageStretchMode": "fill",
             // "backgroundImageAlignment": "topRight",
             "backgroundImageOpacity": 0.2,
-            "opacity": 0,
+            "opacity": 60,
             "useAcrylic": true,
             "useAtlasEngine": true
         },
