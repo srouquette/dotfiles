@@ -1,11 +1,14 @@
-# -*-mode:gitconfig-*- vim:ft=gitconfig
+{{- $os := .chezmoi.os -}}
+{{- if and (eq .chezmoi.os "windows") (ne (env "MSYSTEM") "") -}}
+{{-     $os = "msys2" -}}
+{{- end -}}
 
 [user]
 name = {{ .name | quote }}
 email = {{ .email | quote }}
 
 [core]
-{{ if eq .os "windows" -}}
+{{ if eq $os "windows" -}}
 autocrlf = "true"
 {{- else -}}
 autocrlf = "input"
@@ -14,15 +17,11 @@ preloadindex = true
 fsmonitor = true
 fscache = true
 untrackedcache = true
-{{ if eq .chezmoi.config.edit.command "code" -}}
+{{ if lookPath "code" -}}
 editor = "code --wait"
-{{- else if .chezmoi.config.edit.command -}}
-editor = "{{ .chezmoi.config.edit.command }}"
 {{- end }}
-{{ if eq .chezmoi.config.diff.pager "delta" -}}
+{{ if lookPath "delta" -}}
 pager = "delta --width=${FZF_PREVIEW_COLUMNS:--0}"
-{{- else if .chezmoi.config.diff.pager -}}
-pager = "{{ .chezmoi.config.diff.pager }}"
 {{- end }}
 
 [feature]
@@ -55,11 +54,15 @@ difftool = true
 mnemonicPrefix = true
 algorithm = "histogram"
 colorMoved = "default"
-{{ if .chezmoi.config.diff.command -}}
-tool = "{{ .chezmoi.config.diff.command }}"
-{{- end }}
-{{ if eq .chezmoi.config.diff.command "difft" -}}
+{{ if lookPath "delta" -}}
+tool = "delta"
+{{ else if lookPath "difft" -}}
+tool = "difft"
 external = "difft"
+{{ else if lookPath "meld" -}}
+tool = "meld"
+{{ else if lookPath "code" -}}
+tool = "code"
 {{- end }}
 
 [difftool]
@@ -76,8 +79,10 @@ cmd = code --wait --diff "$LOCAL" "$REMOTE"
 
 [merge]
 conflictstyle = "diff3"
-{{ if .chezmoi.config.merge.command -}}
-tool = "{{ .chezmoi.config.merge.command }}"
+{{ if lookPath "meld" -}}
+tool = "meld"
+{{ else if lookPath "code" -}}
+tool = "code"
 {{- end }}
 
 [mergetool "meld"]
@@ -95,17 +100,15 @@ cmd = code --wait --merge "$REMOTE" "$LOCAL" "$BASE" "$MERGED"
 [help]
 autocorrect = 20
 
-{{ if eq .chezmoi.config.diff.pager "delta" -}}
 [interactive]
 diffFilter = "delta --color-only"
 
 [delta]
 features = "mellow-barbet"
 navigate = true    # use n and N to move between diff sections
-{{ if eq .chezmoi.config.edit.command "code" -}}
+{{ if lookPath "code" -}}
 hyperlinks = true
 hyperlinks-file-link-format = "vscode://file/{path}:{line}"
-{{- end }}
 {{- end }}
 
 [include]
