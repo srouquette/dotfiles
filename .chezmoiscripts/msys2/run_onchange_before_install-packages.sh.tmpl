@@ -14,14 +14,14 @@ prefix='mingw-w64-clang-x86_64'
 {{- else -}}
 prefix=$MINGW_PACKAGE_PREFIX
 {{- end }}
-for pkg in "${prefixed_packages[@]}"; do
-  fqn_packages+=( ${prefix}-${pkg} )
-done
 
-# add common packages
 fqn_packages=()
 for pkg in "${packages[@]}"; do
   fqn_packages+=( ${pkg} )
+done
+
+for pkg in "${prefixed_packages[@]}"; do
+  fqn_packages+=( ${prefix}-${pkg} )
 done
 
 # get installed packages
