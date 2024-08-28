@@ -4,8 +4,8 @@
 {{- end -}}
 
 [user]
-name = {{ .name | quote }}
-email = {{ .email | quote }}
+name = "Syl ⏚"
+email = "srouquette@gmail.com"
 
 [core]
 {{ if eq $os "windows" -}}
@@ -17,12 +17,6 @@ preloadindex = true
 fsmonitor = true
 fscache = true
 untrackedcache = true
-{{ if lookPath "code" -}}
-editor = "code --wait"
-{{- end }}
-{{ if lookPath "delta" -}}
-pager = "delta --width=${FZF_PREVIEW_COLUMNS:--0}"
-{{- end }}
 
 [feature]
 manyFiles = true
@@ -54,63 +48,21 @@ difftool = true
 mnemonicPrefix = true
 algorithm = "histogram"
 colorMoved = "default"
-{{ if lookPath "delta" -}}
-tool = "delta"
-{{ else if lookPath "difft" -}}
-tool = "difft"
-external = "difft"
-{{ else if lookPath "meld" -}}
-tool = "meld"
-{{ else if lookPath "code" -}}
-tool = "code"
-{{- end }}
 
 [difftool]
 prompt = false
 
-[difftool "difft"]
-cmd = difft "$LOCAL" "$REMOTE"
-
-[difftool "meld"]
-cmd = meld "$LOCAL" "$REMOTE"
-
-[difftool "code"]
-cmd = code --wait --diff "$LOCAL" "$REMOTE"
-
 [merge]
 conflictstyle = "diff3"
-{{ if lookPath "meld" -}}
-tool = "meld"
-{{ else if lookPath "code" -}}
-tool = "code"
-{{- end }}
-
-[mergetool "meld"]
-# -> middle panel will be the merged file with conflicts
-cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-# -> middle panel will be the base file without conflicts
-# cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
-
-[mergetool "code"]
-# -> Original way before three-way merge shown commented out
-# cmd = code --wait $MERGED
-# -> For "Three-way merge"
-cmd = code --wait --merge "$REMOTE" "$LOCAL" "$BASE" "$MERGED"
 
 [help]
 autocorrect = 20
 
-[interactive]
-diffFilter = "delta --color-only"
-
-[delta]
-features = "mellow-barbet"
-navigate = true    # use n and N to move between diff sections
-{{ if lookPath "code" -}}
-hyperlinks = true
-hyperlinks-file-link-format = "vscode://file/{path}:{line}"
-{{- end }}
-
 [include]
+path = "config.user"
 path = "aliases"
 path = "themes.gitconfig"
+{{ if lookPath "code" -}}   path = "config.code"    {{- end }}
+{{ if lookPath "meld" -}}   path = "config.meld"    {{- end }}
+{{ if lookPath "difft" -}}  path = "config.difft"   {{- end }}
+{{ if lookPath "delta" -}}  path = "config.delta"   {{- end }}

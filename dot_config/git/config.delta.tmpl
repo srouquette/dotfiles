@@ -1,0 +1,13 @@
+[core]
+pager = "delta --width=${FZF_PREVIEW_COLUMNS:--0}"
+
+[interactive]
+diffFilter = "delta --color-only"
+
+[delta]
+features = "mellow-barbet"
+navigate = true    # use n and N to move between diff sections
+{{ if lookPath "code" -}}
+hyperlinks = true
+hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+{{- end }}

@@ -1,0 +1,14 @@
+[diff]
+tool = "meld"
+
+[difftool "meld"]
+cmd = meld "$LOCAL" "$REMOTE"
+
+[merge]
+tool = "meld"
+
+[mergetool "meld"]
+# -> middle panel will be the merged file with conflicts
+cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+# -> middle panel will be the base file without conflicts
+# cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"

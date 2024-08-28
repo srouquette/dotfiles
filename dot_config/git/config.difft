@@ -1,0 +1,6 @@
+[diff]
+tool = "difft"
+external = "difft"
+
+[difftool "difft"]
+cmd = difft "$LOCAL" "$REMOTE"

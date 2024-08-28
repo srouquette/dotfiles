@@ -1,0 +1,17 @@
+[core]
+editor = "code --wait"
+
+[diff]
+tool = "code"
+
+[difftool "code"]
+cmd = code --wait --diff "$LOCAL" "$REMOTE"
+
+[merge]
+tool = "code"
+
+[mergetool "code"]
+# -> Original way before three-way merge shown commented out
+# cmd = code --wait $MERGED
+# -> For "Three-way merge"
+cmd = code --wait --merge "$REMOTE" "$LOCAL" "$BASE" "$MERGED"
