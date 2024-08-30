@@ -1,6 +1,6 @@
 [diff]
-tool = "difft"
-external = "difft"
+    tool = difft
+    external = difft
 
 [difftool "difft"]
-cmd = difft "$LOCAL" "$REMOTE"
+    cmd = difft "$LOCAL" "$REMOTE"

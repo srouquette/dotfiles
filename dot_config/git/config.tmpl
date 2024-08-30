@@ -4,65 +4,49 @@
 {{- end -}}
 
 [user]
-name = "Syl ⏚"
-email = "srouquette@gmail.com"
-
+    name = "Syl ⏚"
+    email = "srouquette@gmail.com"
 [core]
-{{ if eq $os "windows" -}}
-autocrlf = "true"
-{{- else -}}
-autocrlf = "input"
-{{- end }}
-preloadindex = true
-fsmonitor = true
-fscache = true
-untrackedcache = true
-
+    autocrlf = {{ if eq $os "windows" -}} "true" {{- else -}} "input" {{- end }}
+    preloadindex = true
+    fsmonitor = true
+    fscache = true
+    untrackedcache = true
 [feature]
-manyFiles = true
-
+    manyFiles = true
 [fsmonitor]
-allowRemote = true
-
+    allowRemote = true
 [status]
-# -> all, normal, no. default is all.
-showUntrackedFiles = "all"
-
+    # -> all, normal, no. default is all.
+    showUntrackedFiles = "all"
 [color]
-status = true
-
+    status = true
 [pull]
-rebase = true
-
+    rebase = true
 [push]
-autoSetupRemote = true
-
+    autoSetupRemote = true
 [rebase]
-autostash = true
-autosquash = true
-
+    autostash = true
+    autosquash = true
 [pager]
-difftool = true
-
+    difftool = true
 [diff]
-mnemonicPrefix = true
-algorithm = "histogram"
-colorMoved = "default"
-
+    mnemonicPrefix = true
+    algorithm = "histogram"
+    colorMoved = "default"
 [difftool]
-prompt = false
-
+    prompt = false
 [merge]
-conflictstyle = "diff3"
-
+    conflictstyle = "diff3"
+[rerere]
+    enabled = true
 [help]
-autocorrect = 20
-
+    autocorrect = 20
 [include]
-path = "config.user"
-path = "aliases"
-path = "themes.gitconfig"
-{{ if lookPath "code" -}}   path = "config.code"    {{- end }}
-{{ if lookPath "meld" -}}   path = "config.meld"    {{- end }}
-{{ if lookPath "difft" -}}  path = "config.difft"   {{- end }}
-{{ if lookPath "delta" -}}  path = "config.delta"   {{- end }}
+    path = "config.custom"
+    path = "aliases"
+    path = "themes.gitconfig"
+    {{ if lookPath "code" -}}   path = "config.code"    {{- end }}
+    {{ if lookPath "meld" -}}   path = "config.meld"    {{- end }}
+    {{ if lookPath "difft" -}}  path = "config.difft"   {{- end }}
+    {{ if lookPath "delta" -}}  path = "config.delta"   {{- end }}
