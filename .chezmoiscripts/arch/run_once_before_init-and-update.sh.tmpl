@@ -4,7 +4,7 @@ set -eufo pipefail
 # only initialize as root
 {{ if eq .chezmoi.username "root" -}}
 
-pacman -Syy archlinux-keyring
+pacman -Syy archlinux-keyring --noconfirm
 pacman-key --init
 pacman-key --populate
 
@@ -12,6 +12,6 @@ pacman -Syy --noconfirm
 pacman -Syu --noconfirm
 
 echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
-useradd --create-home --user-group -G wheel --shell /bin/zsh {{ .username }}
+useradd --create-home --user-group -G wheel --shell /bin/zsh {{ .username }} &> /dev/null
 
 {{ end -}}
