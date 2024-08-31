@@ -1,6 +1,6 @@
 [arch.packages]
     common = [
-        "7zip",
+        "p7zip",
         "bat",
         "bc",
         "git",
@@ -10,7 +10,7 @@
         "fzf",
         "gdu",
         "jq",
-        "python-tldr",
+        "tealdeer",
         "ripgrep",
         "starship",
         "unzip",
