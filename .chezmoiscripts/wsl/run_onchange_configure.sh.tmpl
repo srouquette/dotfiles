@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
-grep -q "# updated by chezmoi" /etc/wsl.conf && return 0
+grep -q "# updated by chezmoi" /etc/wsl.conf && exit 0
 
 cat << EOF >> /etc/wsl.conf
 # updated by chezmoi
@@ -11,4 +11,3 @@ cat << EOF >> /etc/wsl.conf
 [interop]
   appendWindowsPath = false
 EOF
-fi
