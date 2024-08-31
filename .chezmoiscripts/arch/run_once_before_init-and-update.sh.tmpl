@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+# only initialize as root
+{{ if eq .chezmoi.username "root" -}}
+
+pacman -Syy archlinux-keyring
+pacman-key --init
+pacman-key --populate
+
+pacman -Syy --noconfirm
+pacman -Syu --noconfirm
+
+echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
+useradd --create-home --user-group -G wheel --shell /bin/zsh {{ .username }}
+
+{{ end -}}

@@ -70,35 +70,28 @@
                     "MSYS": "winsymlinks:nativestrict"
                 },
                 "guid": "{71160544-14d8-4194-af25-d05feeac7233}",
-                "hidden": false,
                 "icon": "C:/msys64/ucrt64.ico",
                 "name": "UCRT64 / MSYS2",
                 "startingDirectory": "C:/msys64/home/%USERNAME%"
             },
             {
-                "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -shell zsh",
-                "environment":
-                {
-                    "MSYS": "winsymlinks:nativestrict"
-                },
+                "commandline": "%USERPROFILE%/scoop/apps/archwsl/current/Arch.exe",
+                "icon": "%USERPROFILE%/scoop/apps/archwsl/current/Arch.exe",
+                "startingDirectory": "//wsl$/Arch/home/syl",
                 "guid": "{71160544-14d8-4194-af25-d05feeac7230}",
-                "hidden": true,
-                "icon": "C:/msys64/mingw64.ico",
-                "name": "MINGW64 / MSYS2",
-                "startingDirectory": "C:/msys64/home/%USERNAME%"
+                "name": "ArchWSL"
             },
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
                 "name": "Windows PowerShell",
                 "startingDirectory": "%USERPROFILE%"
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
-                "elevate": true,
+                "hidden": true,
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "name": "Invite de commandes (admin)",
+                "name": "Invite de commandes",
                 "startingDirectory": "%USERPROFILE%"
             }
         ]

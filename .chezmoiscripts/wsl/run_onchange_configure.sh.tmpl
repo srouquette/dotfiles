@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+grep -q "# updated by chezmoi" /etc/wsl.conf && return 0
+
+cat << EOF >> /etc/wsl.conf
+# updated by chezmoi
+[user]
+  default = {{ .username | quote }}
+
+[interop]
+  appendWindowsPath = false
+EOF
+fi

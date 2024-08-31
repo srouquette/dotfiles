@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+{{ $sudo := "sudo" -}}
+{{ if eq .chezmoi.username "root" -}}
+{{   $sudo = "" -}}
+{{ end -}}
+
+packages=( {{ range .arch.packages.common }}'{{ . }}' {{ end }})
+{{ if eq .profile "work" -}}
+packages+=( {{ range .arch.packages.work }}'{{ . }}' {{ end }})
+{{- end }}
+
+# get installed packages
+installed=$(pacman -Qqe)
+
+# filter out packages that are already installed
+filtered=()
+for pkg in "${packages[@]}"; do
+  [[ $installed == *${pkg}* ]] || filtered+=($pkg)
+done
+
+[ ${#filtered[@]} -eq 0 ] || {{ $sudo }} pacman -S --noconfirm ${filtered[@]}

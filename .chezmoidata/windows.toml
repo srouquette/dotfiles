@@ -10,6 +10,7 @@
 
 [windows.packages.common]
     "7zip" = "main"
+    "archwsl" = "extras"
     "aria2" = "main"
     # "difftastic" = "main"
     "dotnet-7.0-desktopruntime" = "okibcn_ScoopMaster"

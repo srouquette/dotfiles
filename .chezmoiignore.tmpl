@@ -2,7 +2,7 @@ README.md
 LICENSE.md
 internals/**
 
-{{ if ne .os "windows" -}}
+{{ if ne .subsystem "windows" -}}
 .chezmoiscripts/windows/**
 .chezmoidata/windows*
 .config/windows*
@@ -11,8 +11,23 @@ scoop/**
 .wslconfig
 {{- end }}
 
-{{ if ne .os "msys2" -}}
+{{ if ne .subsystem "wsl" -}}
+.chezmoiscripts/wsl/**
+{{- end }}
+
+{{ if ne .subsystem "msys2" -}}
 .chezmoiscripts/msys2/**
+{{- end }}
+
+{{ if ne .osid "linux-arch" -}}
+.chezmoiscripts/arch/**
+{{- end }}
+
+{{ if or (ne .subsystem "msys2") (ne .osid "linux-arch") -}}
+.chezmoiscripts/pacman/**
+{{- end }}
+
+{{ if or (ne .subsystem "msys2") (ne .os "linux") -}}
 .config/zsh/**
 .config/bat
 .lessfilter

@@ -1,0 +1,8 @@
+    command = "difft"
+    args = [
+        "{{ .Destination }}",
+        "{{ .Target }}",
+        "--override", "*config:toml",
+        "--parse-error-limit", "100",
+    ]
+    pager = "less -FX"

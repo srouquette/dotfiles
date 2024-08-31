@@ -1,0 +1,28 @@
+[arch.packages]
+    common = [
+        "7zip",
+        "bat",
+        "bc",
+        "git",
+        "git-delta",
+        "eza",
+        "fd",
+        "fzf",
+        "gdu",
+        "jq",
+        "python-tldr",
+        "ripgrep",
+        "starship",
+        "unzip",
+        "vivid",
+        "yazi",
+        "zoxide",
+        "zsh",
+    ]
+    work = [
+        "asdf",
+        "direnv",
+        "helm",
+        "helmfile",
+        "kubectx",
+    ]

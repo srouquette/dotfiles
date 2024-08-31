@@ -15,10 +15,7 @@ prefix='mingw-w64-clang-x86_64'
 prefix=$MINGW_PACKAGE_PREFIX
 {{- end }}
 
-fqn_packages=()
-for pkg in "${packages[@]}"; do
-  fqn_packages+=( ${pkg} )
-done
+fqn_packages=( ${packages[@]} )
 
 for pkg in "${prefixed_packages[@]}"; do
   fqn_packages+=( ${prefix}-${pkg} )

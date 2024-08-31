@@ -1,72 +1,48 @@
-{{- /* promptStringOnce is super slow and doesnt seem to work on my computer */ -}}
-{{- /* $name := promptStringOnce . "name" "Username" "Syl" */ -}}
-{{- /* $email := promptStringOnce . "email" "Email Address" "rouquette@gmail.com" */ -}}
-{{- $choices := list "home" "work" -}}
-{{- /* $profile := promptChoiceOnce . "profile" "Which profile" $choices "home" */ -}}
-
-{{- $os := .chezmoi.os -}}
+{{- $osid := .chezmoi.os -}}
+{{- $subsystem := .chezmoi.os -}}
 {{- if and (eq .chezmoi.os "windows") (ne (env "MSYSTEM") "") -}}
-{{-     $os = "msys2" -}}
+{{-     $subsystem = "msys2" -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-     if hasKey .chezmoi.osRelease "id" -}}
+{{-         $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{-     end -}}
+{{-     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-         $subsystem = "wsl" -}}
+{{-     end }}
 {{- end -}}
 
-
 [data]
+    osid = {{ $osid | quote }}
+    subsystem = {{ $subsystem | quote }}
+{{ if stat (joinPath .chezmoi.homeDir ".config" "chezmoi" "chezmoi.data.toml") -}}
+{{- include (joinPath .chezmoi.homeDir ".config" "chezmoi" "chezmoi.data.toml") -}}
+{{- else -}}
     name = "Syl ⏚"
     email = "srouquette@gmail.com"
+    username = "syl"
     profile = "home"
-    os = {{ $os | quote }}
+{{- end }}
 
-
+[edit]
 {{ if lookPath "code" -}}
-[edit]
-    command = "code"
-    args = ["--wait"]
-{{- else if lookPath "nano" -}}
-[edit]
-    command = "nano"
+{{- include (joinPath .chezmoi.sourceDir ".chezmoi" "edit.code.toml") -}}
 {{- end }}
 
-
+[diff]
 {{ if lookPath "difft" -}}
-[diff]
-    command = "difft"
-    args = [
-        "{{ "{{" }} .Destination {{ "}}" }}",
-        "{{ "{{" }} .Target {{ "}}" }}",
-        "--override", "*config:toml",
-        "--parse-error-limit", "100",
-    ]
-    pager = "less -FX"
+{{- include (joinPath .chezmoi.sourceDir ".chezmoi" "diff.difft.toml") -}}
 {{- else if lookPath "delta" -}}
-[diff]
-    pager = "delta"
+{{- include (joinPath .chezmoi.sourceDir ".chezmoi" "diff.delta.toml") -}}
 {{- end }}
 
-
+[merge]
 {{ if lookPath "meld" -}}
-[merge]
-    command = "meld"
-    args = [
-        "{{ "{{" }} .Target {{ "}}" }}",
-        "{{ "{{" }} .Source {{ "}}" }}",
-        "{{ "{{" }} .Destination {{ "}}" }}",
-        "--output",
-        "{{ "{{" }} .Source {{ "}}" }}",
-    ]
+{{- include (joinPath .chezmoi.sourceDir ".chezmoi" "merge.meld.toml") -}}
 {{- else if lookPath "code" -}}
-[merge]
-    command = "code"
-    args = ["--wait", "--merge",
-        "{{ "{{" }} .Destination {{ "}}" }}",
-        "{{ "{{" }} .Target {{ "}}" }}",
-        "{{ "{{" }} .Target {{ "}}" }}",
-        "{{ "{{" }} .Source {{ "}}" }}",
-    ]
+{{- include (joinPath .chezmoi.sourceDir ".chezmoi" "merge.code.toml") -}}
 {{- end }}
 
-
-
-{{ if ne $os "windows" -}}
+{{ if ne $subsystem "windows" -}}
 [interpreters.sh]
     command = "bash"
 [interpreters.zsh]

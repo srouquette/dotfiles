@@ -1,0 +1,8 @@
+    command = "meld"
+    args = [
+        "{{  .Target }}",
+        "{{  .Source }}",
+        "{{  .Destination }}",
+        "--output",
+        "{{  .Source }}",
+    ]
