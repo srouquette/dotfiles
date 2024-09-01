@@ -17,7 +17,7 @@ packages+=( {{ range .linux.work }}'{{ . }}' {{ end }})
 
 {{ if eq .osid "linux-arch" -}}
 install_package() {
-  {{ $sudo }} pacman -S --needed --noconfirm "$1" || echo "Package $1 not found, skipping."
+  {{ $sudo }} pacman -S --needed --noconfirm "$1" || true
 }
 {{- end }}
 
