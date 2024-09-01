@@ -8,10 +8,19 @@ packages+=( {{ range .linux.work }}'{{ . }}' {{ end }})
 
 {{ template "is_installed" .linux }}
 
+[ ${#filtered[@]} -eq 0 ] && exit 0
+
 {{ $sudo := "sudo" -}}
 {{ if eq .chezmoi.username "root" -}}
 {{   $sudo = "" -}}
 {{ end -}}
 
+{{ if eq .osid "linux-arch" -}}
+install_package() {
+  {{ $sudo }} pacman -S --needed --noconfirm "$1" || echo "Package $1 not found, skipping."
+}
+{{- end }}
 
-[ ${#filtered[@]} -eq 0 ] || {{ $sudo }} pacman -S --needed --noconfirm ${filtered[@]} 2>/dev/null || true
+for pkg in "${filtered[@]}"; do
+  install_package "$pkg"
+done
