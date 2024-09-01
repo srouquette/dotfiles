@@ -1,0 +1,19 @@
+declare -A bin_map
+{{ range $k, $v := .bin -}}
+bin_map[{{ $k | quote }}]={{ $v | quote }}
+{{ end }}
+
+function is_installed() {
+  command -v $1 &>/dev/null && return 0
+  [[ -v bin_map[$1] ]] || return 1
+  command -v ${bin_map[$1]} &>/dev/null && return 0
+  return 1
+}
+
+# filter out packages that are already installed
+filtered=()
+
+for pkg in "${packages[@]}"; do
+  is_installed $pkg && continue
+  filtered+=($pkg)
+done

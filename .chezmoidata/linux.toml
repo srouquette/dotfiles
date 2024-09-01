@@ -1,18 +1,18 @@
-[arch.packages]
-    common = [
+[linux]
+    packages = [
         "p7zip",
         "bat",
-        "bc",
+        "du-dust",
         "git",
         "git-delta",
         "eza",
         "fd",
         "fzf",
-        "gdu",
-        "jq",
-        "tealdeer",
+        "jaq",
+        "kalc",
         "ripgrep",
         "starship",
+        "tealdeer",
         "unzip",
         "vivid",
         "yazi",
@@ -26,3 +26,11 @@
         "helmfile",
         "kubectx",
     ]
+
+[linux.bin]
+    p7zip = "7z"
+    du-dust = "dust"
+    git-delta = "delta"
+    paper-terminal = "paper"
+    ripgrep = "rg"
+    tealdeer = "tldr"

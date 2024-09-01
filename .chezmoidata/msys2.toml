@@ -1,21 +1,19 @@
 [msys2.packages]
-    common = [
+    main = [
         "pactoys",
         "openssh",
         "unzip",
         "zsh",
     ]
     # noteworthy cli editors: micro helix
-    prefixed = [
+    msystem = [
         "7zip",
         "bat",
-        "bc",
-        "ca-certificates",
         "delta",
+        "dust",
         "eza",
         "fd",
         "fzf",
-        "gdu",
         "jq",
         "python-tldr",
         "ripgrep",
@@ -24,3 +22,11 @@
         "yazi",
         "zoxide",
     ]
+
+[msys2.bin]
+    7zip = "7z"
+    pactoys = "pacboy"
+    paper-terminal = "paper"
+    python-tldr = "tldr"
+    openssh = "ssh"
+    ripgrep = "rg"

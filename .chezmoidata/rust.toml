@@ -1,0 +1,24 @@
+[rust]
+    packages = [
+        "bat",
+        "du-dust",
+        "git-delta",
+        "eza",
+        "fd",
+        "jaq",
+        "kalc",
+        "paper-terminal",
+        "ripgrep",
+        "starship",
+        "tealdeer",
+        "vivid",
+        "yazi",
+        "zoxide",
+    ]
+
+[rust.bin]
+    du-dust = "dust"
+    git-delta = "delta"
+    paper-terminal = "paper"
+    ripgrep = "rg"
+    tealdeer = "tldr"

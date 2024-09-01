@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+# only install rust packages as non-root, to install them in $CARGO_HOME/bin
+{{ if ne .chezmoi.username "root" -}}
+
+if command -v cargo &>/dev/null; then
+  rustup update
+else
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+packages=( {{ range .rust.packages }}'{{ . }}' {{ end }})
+
+{{ template "is_installed" .rust }}
+
+[ ${#filtered[@]} -eq 0 ] && exit 0
+
+for pkg in "${filtered[@]}"; do
+  cargo install --locked --quiet $pkg &>/dev/null
+done
+
+{{- end }}

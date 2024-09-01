@@ -1,34 +1,25 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
-packages=( {{ range .msys2.packages.common }}'{{ . }}' {{ end }})
-prefixed_packages=( {{ range .msys2.packages.prefixed }}'{{ . }}' {{ end }})
+packages=( {{ range .msys2.packages.main }}'{{ . }}' {{ end }})
+prefixed_packages=( {{ range .msys2.packages.msystem }}'{{ . }}' {{ end }})
 
 # resolve prefixed_packages with the prefix used for their installation
 {{ if eq (env "MSYSTEM") "MINGW64" -}}
-prefix='mingw-w64-x86_64'
+prefix='mingw-w64-x86_64-'
 {{- else if eq (env "MSYSTEM") "UCRT64" -}}
-prefix='mingw-w64-ucrt-x86_64'
+prefix='mingw-w64-ucrt-x86_64-'
 {{- else if eq (env "MSYSTEM") "CLANG64" -}}
-prefix='mingw-w64-clang-x86_64'
+prefix='mingw-w64-clang-x86_64-'
 {{- else -}}
 prefix=$MINGW_PACKAGE_PREFIX
 {{- end }}
 
-fqn_packages=( ${packages[@]} )
+{{ template "is_installed" .msys2 }}
 
 for pkg in "${prefixed_packages[@]}"; do
-  fqn_packages+=( ${prefix}-${pkg} )
-done
-
-# get installed packages
-installed=$(pacman -Qqe)
-
-# filter out packages that are already installed
-filtered=()
-for pkg in "${fqn_packages[@]}"; do
-  [[ $installed == *${pkg}* ]] || filtered+=($pkg)
+  is_installed $pkg && continue
+  filtered+=( ${prefix}${pkg} )
 done
 
 [ ${#filtered[@]} -eq 0 ] || pacman -S --noconfirm --assume-installed git ${filtered[@]}
-

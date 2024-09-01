@@ -3,32 +3,36 @@ LICENSE.md
 internals/**
 
 {{ if ne .subsystem "windows" -}}
-.chezmoiscripts/windows/**
-.chezmoidata/windows*
-.config/windows*
+.chezmoiscripts/windows/*
+.config/windows-terminal/*
 AppData/**
 scoop/**
 .wslconfig
 {{- end }}
 
+{{ if ne .chezmoi.os "linux" -}}
+.chezmoiscripts/asdf/*
+{{- end }}
+
 {{ if ne .subsystem "wsl" -}}
-.chezmoiscripts/wsl/**
+.chezmoiscripts/wsl/*
 {{- end }}
 
 {{ if ne .subsystem "msys2" -}}
-.chezmoiscripts/msys2/**
+.chezmoiscripts/msys2/*
 {{- end }}
 
 {{ if ne .osid "linux-arch" -}}
-.chezmoiscripts/arch/**
+.chezmoiscripts/arch/*
 {{- end }}
 
 {{ if or (ne .subsystem "msys2") (ne .osid "linux-arch") -}}
-.chezmoiscripts/pacman/**
+.chezmoiscripts/pacman/*
 {{- end }}
 
-{{ if or (ne .subsystem "msys2") (ne .os "linux") -}}
-.config/zsh/**
-.config/bat
+{{ if or (ne .subsystem "msys2") (ne .chezmoi.os "linux") -}}
+.chezmoiscripts/rust/*
+.config/bat/*
+.config/tealdeer/*
 .lessfilter
 {{- end }}

@@ -1,23 +1,16 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
+packages=( {{ range .linux.packages }}'{{ . }}' {{ end }})
+{{ if eq .profile "work" -}}
+packages+=( {{ range .linux.work }}'{{ . }}' {{ end }})
+{{- end }}
+
+{{ template "is_installed" .linux }}
+
 {{ $sudo := "sudo" -}}
 {{ if eq .chezmoi.username "root" -}}
 {{   $sudo = "" -}}
 {{ end -}}
-
-packages=( {{ range .arch.packages.common }}'{{ . }}' {{ end }})
-{{ if eq .profile "work" -}}
-packages+=( {{ range .arch.packages.work }}'{{ . }}' {{ end }})
-{{- end }}
-
-# get installed packages
-installed=$(pacman -Qqe)
-
-# filter out packages that are already installed
-filtered=()
-for pkg in "${packages[@]}"; do
-  [[ $installed == *${pkg}* ]] || filtered+=($pkg)
-done
 
 [ ${#filtered[@]} -eq 0 ] || {{ $sudo }} pacman -S --noconfirm ${filtered[@]}
