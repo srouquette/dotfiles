@@ -22,7 +22,7 @@ features_map[{{ $k | quote }}]='--no-default-features --features {{ $v | join ",
 for pkg in "${filtered[@]}"; do
   features=''
   [[ -v features_map[$pkg] ]] && features=${features_map[$pkg]}
-  cargo install --quiet --locked --color=always \
+  cargo install --quiet --locked \
     --config "term.progress.when='always'" \
     --config "term.progress.width=$(tput cols)" \
     $features \
