@@ -19,6 +19,10 @@ packages+=( {{ range .linux.work }}'{{ . }}' {{ end }})
 install_package() {
   {{ $sudo }} pacman -S --needed --noconfirm "$1" || true
 }
+{{ else if or (eq .osid "linux-ubuntu") (eq .osid "linux-debian") -}}
+install_package() {
+  {{ $sudo }} apt install --ignore-missing --yes --force-yes "$1" || true
+}
 {{- end }}
 
 for pkg in "${filtered[@]}"; do
