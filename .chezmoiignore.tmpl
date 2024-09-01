@@ -12,6 +12,7 @@ scoop/**
 
 {{ if ne .chezmoi.os "linux" -}}
 .chezmoiscripts/asdf/*
+.chezmoiscripts/linux/*
 {{- end }}
 
 {{ if ne .subsystem "wsl" -}}

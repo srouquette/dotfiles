@@ -13,4 +13,5 @@ packages+=( {{ range .linux.work }}'{{ . }}' {{ end }})
 {{   $sudo = "" -}}
 {{ end -}}
 
-[ ${#filtered[@]} -eq 0 ] || {{ $sudo }} pacman -S --noconfirm ${filtered[@]}
+
+[ ${#filtered[@]} -eq 0 ] || {{ $sudo }} pacman -S --needed --noconfirm ${filtered[@]} 2>/dev/null || true
