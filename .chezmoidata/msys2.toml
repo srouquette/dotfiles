@@ -1,5 +1,8 @@
 [msys2.packages]
     main = [
+        "diffutils",
+        "m4",
+        "make",
         "pactoys",
         "openssh",
         "unzip",
@@ -14,8 +17,6 @@
         "eza",
         "fd",
         "fzf",
-        "jq",
-        "python-tldr",
         "ripgrep",
         "starship",
         "vivid",
@@ -25,8 +26,9 @@
 
 [msys2.bin]
     7zip = "7z"
+    diffutils = "diff"
+    openssh = "ssh"
     pactoys = "pacboy"
     paper-terminal = "paper"
     python-tldr = "tldr"
-    openssh = "ssh"
     ripgrep = "rg"

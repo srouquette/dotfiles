@@ -26,11 +26,11 @@ scoop/**
 .chezmoiscripts/arch/*
 {{- end }}
 
-{{ if or (ne .subsystem "msys2") (ne .osid "linux-arch") -}}
+{{ if and (ne .subsystem "msys2") (ne .osid "linux-arch") -}}
 .chezmoiscripts/pacman/*
 {{- end }}
 
-{{ if or (ne .subsystem "msys2") (ne .chezmoi.os "linux") -}}
+{{ if and (ne .subsystem "msys2") (ne .chezmoi.os "linux") -}}
 .chezmoiscripts/rust/*
 .config/bat/*
 .config/tealdeer/*

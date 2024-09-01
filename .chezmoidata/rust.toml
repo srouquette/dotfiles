@@ -6,7 +6,6 @@
         "eza",
         "fd",
         "jaq",
-        "kalc",
         "paper-terminal",
         "ripgrep",
         "starship",
@@ -22,3 +21,5 @@
     paper-terminal = "paper"
     ripgrep = "rg"
     tealdeer = "tldr"
+
+[rust.features]

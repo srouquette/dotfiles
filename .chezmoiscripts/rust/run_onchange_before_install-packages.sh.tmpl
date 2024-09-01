@@ -4,9 +4,7 @@ set -eufo pipefail
 # only install rust packages as non-root, to install them in $CARGO_HOME/bin
 {{ if ne .chezmoi.username "root" -}}
 
-if command -v cargo &>/dev/null; then
-  rustup update
-else
+if ! command -v cargo &>/dev/null; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
@@ -16,8 +14,19 @@ packages=( {{ range .rust.packages }}'{{ . }}' {{ end }})
 
 [ ${#filtered[@]} -eq 0 ] && exit 0
 
+declare -A features_map
+{{ range $k, $v := .rust.features -}}
+features_map[{{ $k | quote }}]='--no-default-features --features {{ $v | join "," }}'
+{{ end }}
+
 for pkg in "${filtered[@]}"; do
-  cargo install --locked --quiet $pkg &>/dev/null
+  features=''
+  [[ -v features_map[$pkg] ]] && features=${features_map[$pkg]}
+  cargo install --quiet --locked --color=always \
+    --config "term.progress.when='always'" \
+    --config "term.progress.width=$(tput cols)" \
+    $features \
+    $pkg
 done
 
 {{- end }}
