@@ -2,14 +2,13 @@
     packages = [
         "p7zip",
         "bat",
-        "du-dust",
+        "dust",
         "git",
         "git-delta",
         "eza",
         "fd",
         "fzf",
         "jaq",
-        "kalc",
         "ripgrep",
         "starship",
         "tealdeer",
@@ -29,7 +28,6 @@
 
 [linux.bin]
     p7zip = "7z"
-    du-dust = "dust"
     git-delta = "delta"
     paper-terminal = "paper"
     ripgrep = "rg"
