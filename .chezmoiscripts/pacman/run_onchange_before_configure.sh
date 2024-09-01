@@ -2,5 +2,9 @@
 set -eufo pipefail
 
 if ! grep -q "ILoveCandy" /etc/pacman.conf; then
-  sed -i '/^\[options\]/a ILoveCandy' /etc/pacman.conf
+  {{ $sudo := "sudo" -}}
+  {{ if or (eq .chezmoi.username "root") (eq .subsystem "msys2") -}}
+  {{   $sudo = "" -}}
+  {{ end -}}
+  {{ $sudo }} sed -i '/^\[options\]/a ILoveCandy' /etc/pacman.conf
 fi
