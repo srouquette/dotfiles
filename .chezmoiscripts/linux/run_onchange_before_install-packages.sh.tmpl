@@ -21,7 +21,8 @@ install_package() {
 }
 {{ else if or (eq .osid "linux-ubuntu") (eq .osid "linux-debian") -}}
 install_package() {
-  {{ $sudo }} apt install --ignore-missing --yes --force-yes "$1" || true
+  local apt_cmd=$(command -v apt &>/dev/null && apt || apt-get)
+  {{ $sudo }} $apt_cmd install --ignore-missing --yes --force-yes "$1" || true
 }
 {{- end }}
 

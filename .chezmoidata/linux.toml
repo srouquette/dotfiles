@@ -28,6 +28,7 @@
 
 [linux.bin]
     p7zip = "7z"
+    du-dust = "dust"
     git-delta = "delta"
     paper-terminal = "paper"
     ripgrep = "rg"
