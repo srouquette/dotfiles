@@ -9,7 +9,10 @@ if (!(Get-Command "scoop" -ErrorAction "Ignore")) {
     exit 0
 }
 
-scoop config aria2-enabled true
+$scoopAria = (scoop config aria2-enabled)
+if ("$scoopAria" -ne 'True') {
+    scoop config aria2-enabled true
+}
 
 $scoopShim = (scoop config shim)
 if ("$scoopShim" -ne 'kiennq') {
@@ -18,17 +21,17 @@ if ("$scoopShim" -ne 'kiennq') {
 }
 
 $buckets = @{
-{{- range $k, $v := .windows.packages.buckets }}
+{{- range $k, $v := .scoop.buckets }}
     {{ $k | quote }} = {{ $v | quote }}
 {{- end }}
 }
 
 $apps = @{
-{{- range $k, $v := .windows.packages.common }}
+{{- range $k, $v := .scoop.packages.main }}
     {{ $k | quote }} = {{ $v | quote }}
 {{- end }}
 {{ if eq .profile "work" -}}
-{{- range $k, $v := .windows.packages.work }}
+{{- range $k, $v := .scoop.packages.work }}
     {{ $k | quote }} = {{ $v | quote }}
 {{- end }}
 {{- end }}

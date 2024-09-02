@@ -9,21 +9,22 @@
         "fd",
         "fzf",
         "jaq",
+        "jq",
+        "nano-syntax-highlighting",
         "ripgrep",
         "starship",
         "tealdeer",
         "unzip",
         "vivid",
+        "which",
         "yazi",
         "zoxide",
         "zsh",
     ]
     work = [
         "asdf",
-        "direnv",
         "helm",
         "helmfile",
-        "kubectx",
     ]
 
 [linux.bin]

@@ -2,32 +2,3 @@
     # Run Windows Terminal in Quake Mode on startup
     src = "$Env:CHEZMOI_SOURCE_DIR/internals/Windows/Startup/Quake Terminal.lnk"
     dst = "$Env:USERPROFILE/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Quake Terminal.lnk"
-
-[windows.packages.buckets]
-    "extras" = ""
-    "java" = ""
-    "okibcn_ScoopMaster" = "https://github.com/okibcn/ScoopMaster"
-
-[windows.packages.common]
-    "7zip" = "main"
-    "archwsl" = "extras"
-    "aria2" = "main"
-    # "difftastic" = "main"
-    "dotnet-7.0-desktopruntime" = "okibcn_ScoopMaster"
-    "irfanview" = "extras"
-    "meld" = "extras"
-    "paint.net" = "extras"
-    "powertoys" = "extras"
-    "python" = "main"
-    "regedix" = "https://raw.githubusercontent.com/srouquette/Extras/master/bucket/regedix.json"
-    "revouninstaller" = "extras"
-    "shutup10" = "extras"
-    "sysinternals" = "extras"
-    "vlc" = "extras"
-    "vscode" = "extras"
-    "windows-terminal" = "extras"
-
-[windows.packages.work]
-    "bruno" = "extras"
-    "idea" = "extras"
-    "temurin-lts-jdk" = "java"

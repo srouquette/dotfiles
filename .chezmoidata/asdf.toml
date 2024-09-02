@@ -1,6 +1,11 @@
 [asdf]
     packages = [
+        "aws-iam-authenticator",
+        "direnv",
         "kops",
         "kubectl",
+        "kubectx",
         "terraform",
     ]
+
+[asdf.bin]

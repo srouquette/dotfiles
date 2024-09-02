@@ -1,8 +1,6 @@
 [msys2.packages]
     main = [
-        "diffutils",
-        "m4",
-        "make",
+        "nano-syntax-highlighting",
         "pactoys",
         "openssh",
         "unzip",
@@ -17,6 +15,7 @@
         "eza",
         "fd",
         "fzf",
+        "jq",
         "ripgrep",
         "starship",
         "vivid",

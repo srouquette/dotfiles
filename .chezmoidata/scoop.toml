@@ -1,0 +1,30 @@
+[scoop.buckets]
+    "extras" = ""
+    "java" = ""
+    "okibcn_ScoopMaster" = "https://github.com/okibcn/ScoopMaster"
+
+[scoop.packages.main]
+    "7zip" = "main"
+    "archwsl" = "extras"
+    "aria2" = "main"
+    # "difftastic" = "main"
+    "dotnet-7.0-desktopruntime" = "okibcn_ScoopMaster"
+    "irfanview" = "extras"
+    "git" = "main"
+    "maven" = "main"
+    "meld" = "extras"
+    "paint.net" = "extras"
+    "powertoys" = "extras"
+    "python" = "main"
+    "regedix" = "https://raw.githubusercontent.com/srouquette/Extras/master/bucket/regedix.json"
+    "revouninstaller" = "extras"
+    "shutup10" = "extras"
+    "sysinternals" = "extras"
+    "vlc" = "extras"
+    "vscode" = "extras"
+    "windows-terminal" = "extras"
+
+[scoop.packages.work]
+    "bruno" = "extras"
+    "idea" = "extras"
+    "temurin-lts-jdk" = "java"
