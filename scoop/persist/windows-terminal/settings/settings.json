@@ -77,7 +77,7 @@
             {
                 "commandline": "%USERPROFILE%/scoop/apps/archwsl/current/Arch.exe",
                 "icon": "%USERPROFILE%/scoop/apps/archwsl/current/Arch.exe",
-                "startingDirectory": "//wsl$/Arch/home",
+                "startingDirectory": "//wsl$/Arch/home/syl",
                 "guid": "{71160544-14d8-4194-af25-d05feeac7230}",
                 "name": "ArchWSL"
             },

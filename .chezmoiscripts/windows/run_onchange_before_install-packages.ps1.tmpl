@@ -1,19 +1,22 @@
 
 # skip package discovery during diff
-if ($MyInvocation.Line -contains "diff") {
+if ($MyInvocation.Line -contains 'diff') {
     exit 0
 }
 # check if scoop is installed
-if (!(Get-Command "scoop" -ErrorAction "Ignore")) {
+if (!(Get-Command 'scoop' -ErrorAction 'Ignore')) {
     Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
     exit 0
 }
 
+[Environment]::SetEnvironmentVariable('WSL_USERNAME', {{ .username | quote }},
+    [System.EnvironmentVariableTarget]::User)
+
 $scoopAria = (scoop config aria2-enabled)
 if ("$scoopAria" -ne 'True') {
     scoop config aria2-enabled true
+    scoop config aria2-warning-enabled false
 }
-
 $scoopShim = (scoop config shim)
 if ("$scoopShim" -ne 'kiennq') {
     scoop config shim kiennq
@@ -62,14 +65,23 @@ $export.apps | ForEach-Object {
     }
 }
 # install apps
-$apps.GetEnumerator() | ForEach-Object {
-    if ($_.Value.StartsWith("https://")) {
-        scoop install "$($_.Value)"
-    } else {
-        scoop install "$($_.Value)/$($_.Key)"
+if ($apps.count -gt 0) {
+    gsudo cache on
+    $apps.GetEnumerator() | ForEach-Object {
+        if ($_.Value.StartsWith('https://')) {
+            gsudo { scoop install $args[0] } -args "$($_.Value)"
+        } else {
+            gsudo { scoop install $args[0] } -args "$($_.Value)/$($_.Key)"
+        }
     }
+    gsudo cache off
 }
 
 if ($buckets.Count -ne 0 -or $apps.Count -ne 0) {
     Write-Host scoop added $buckets.Count new buckets and $apps.Count apps.
+}
+
+# if archwsl wasn't previously installed, run setup
+if ($apps.ContainsKey('archwsl')) {
+{{ template "archwsl_setup.ps1" . }}
 }

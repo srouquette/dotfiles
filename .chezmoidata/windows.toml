@@ -1,4 +1,4 @@
 [[windows.copyfiles]]
     # Run Windows Terminal in Quake Mode on startup
-    src = "$Env:CHEZMOI_SOURCE_DIR/internals/Windows/Startup/Quake Terminal.lnk"
+    src = "$Env:CHEZMOI_SOURCE_DIR/.internals/Windows/Startup/Quake Terminal.lnk"
     dst = "$Env:USERPROFILE/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Quake Terminal.lnk"

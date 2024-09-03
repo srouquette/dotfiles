@@ -15,9 +15,9 @@
 [data]
     osid = {{ $osid | quote }}
     subsystem = {{ $subsystem | quote }}
-{{ if stat (joinPath .chezmoi.homeDir ".config" "chezmoi" "chezmoi.data.toml") -}}
+{{- if stat (joinPath .chezmoi.homeDir ".config" "chezmoi" "chezmoi.data.toml") -}}
 {{- include (joinPath .chezmoi.homeDir ".config" "chezmoi" "chezmoi.data.toml") -}}
-{{- else -}}
+{{- else }}
     username = {{ $username | quote }}
     profile = "home"
 {{- end }}
