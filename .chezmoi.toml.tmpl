@@ -1,3 +1,4 @@
+{{ $username := promptStringOnce . "username" "Linux/WSL username" "syl" -}}
 {{- $osid := .chezmoi.os -}}
 {{- $subsystem := .chezmoi.os -}}
 {{- if and (eq .chezmoi.os "windows") (ne (env "MSYSTEM") "") -}}
@@ -17,9 +18,7 @@
 {{ if stat (joinPath .chezmoi.homeDir ".config" "chezmoi" "chezmoi.data.toml") -}}
 {{- include (joinPath .chezmoi.homeDir ".config" "chezmoi" "chezmoi.data.toml") -}}
 {{- else -}}
-    name = "Syl ⏚"
-    email = "srouquette@gmail.com"
-    username = "syl"
+    username = {{ $username | quote }}
     profile = "home"
 {{- end }}
 
