@@ -1,4 +1,7 @@
 {{ if not (lookPath "gsudo") -}}
+if (!(Get-Command 'scoop' -ErrorAction 'Ignore')) {
+    Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+}
 scoop install gsudo
 {{- end }}
 

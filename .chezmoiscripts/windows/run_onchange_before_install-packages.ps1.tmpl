@@ -6,7 +6,6 @@ if ($MyInvocation.Line -contains 'diff') {
 # check if scoop is installed
 if (!(Get-Command 'scoop' -ErrorAction 'Ignore')) {
     Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-    exit 0
 }
 
 $scoopAria = (scoop config aria2-enabled)
