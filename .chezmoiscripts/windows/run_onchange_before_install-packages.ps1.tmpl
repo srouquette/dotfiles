@@ -67,13 +67,15 @@ $export.apps | ForEach-Object {
 # install apps
 if ($apps.count -gt 0) {
     gsudo cache on
-    $apps.GetEnumerator() | ForEach-Object {
-        if ($_.Value.StartsWith('https://')) {
-            gsudo { scoop install $args[0] } -args "$($_.Value)"
-        } else {
-            gsudo { scoop install $args[0] } -args "$($_.Value)/$($_.Key)"
+    gsudo {
+        $args[0].GetEnumerator() | ForEach-Object {
+            if ($_.Value.StartsWith('https://')) {
+                scoop install "$($_.Value)"
+            } else {
+                scoop install "$($_.Value)/$($_.Key)"
+            }
         }
-    }
+    } -args $apps
     gsudo cache off
 }
 

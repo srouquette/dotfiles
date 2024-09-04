@@ -1,0 +1,27 @@
+{{ if not (lookPath "gsudo") -}}
+scoop install gsudo
+{{- end }}
+
+gsudo cache on
+gsudo {
+    $enabled = bcdedit /enum | findstr hypervisorlaunchtype | findstr Auto
+    if (!"$enabled") {
+        bcdedit /set hypervisorlaunchtype Auto
+    }
+
+    $enabled = Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux | findstr Enabled
+    if (!"$enabled") {
+        dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    }
+
+    $enabled = Get-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform | findstr Enabled
+    if (!"$enabled") {
+        dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    }
+
+    $enabled =  wsl --status | findstr 2
+    if (!"$enabled") {
+        wsl --set-default-version 2
+    }
+}
+gsudo cache off
