@@ -9,9 +9,6 @@ if (!(Get-Command 'scoop' -ErrorAction 'Ignore')) {
     exit 0
 }
 
-[Environment]::SetEnvironmentVariable('WSL_USERNAME', {{ .username | quote }},
-    [System.EnvironmentVariableTarget]::User)
-
 $scoopAria = (scoop config aria2-enabled)
 if ("$scoopAria" -ne 'True') {
     scoop config aria2-enabled true
