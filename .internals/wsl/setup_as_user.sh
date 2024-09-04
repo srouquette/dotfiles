@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
-username = $1
+username=$1
 
 chezmoi init srouquette --apply
 
 export ZDOTDIR=$HOME/.config/zsh
-git clone --recursive https://github.com/srouquette/dotfiles.git $ZDOTDIR
-ln -s $ZDOTDIR/home/.zshenv $HOME/.zshenv
+git clone --recursive https://github.com/srouquette/zdotdir.git $ZDOTDIR
+ln -sf $ZDOTDIR/home/.zshenv $HOME/.zshenv
 
 create_symlink() {
     # return if the link already exists
