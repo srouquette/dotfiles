@@ -1,11 +1,11 @@
 {{ if not (lookPath "gsudo") -}}
 if (!(Get-Command 'scoop' -ErrorAction 'Ignore')) {
-    Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }
 scoop install gsudo
 {{- end }}
 
-gsudo cache on
 gsudo {
     $enabled = bcdedit /enum | findstr hypervisorlaunchtype | findstr Auto
     if (!"$enabled") {
@@ -27,4 +27,3 @@ gsudo {
         wsl --set-default-version 2
     }
 }
-gsudo cache off

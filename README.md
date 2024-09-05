@@ -8,7 +8,6 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 # then install gsudo, chezmoi and the dotfiles
-scoop install gsudo
 scoop install chezmoi
 ```
 
@@ -19,7 +18,6 @@ scoop install chezmoi
 ```bash
 pacman -S chezmoi
 ```
-
 
 ## Install: run chezmoi
 

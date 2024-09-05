@@ -1,3 +1,5 @@
+{{- $choices := list "home" "work" -}}
+{{- $profile := promptChoiceOnce . "profile" "Which profile" $choices -}}
 {{- $osid := .chezmoi.os -}}
 {{- $subsystem := .chezmoi.os -}}
 {{- if and (eq .chezmoi.os "windows") (ne (env "MSYSTEM") "") -}}
@@ -8,17 +10,13 @@
 {{-     end -}}
 {{-     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 {{-         $subsystem = "wsl" -}}
-{{-     end }}
+{{-     end -}}
 {{- end -}}
 
 [data]
     osid = {{ $osid | quote }}
     subsystem = {{ $subsystem | quote }}
-{{ if stat (joinPath .chezmoi.homeDir ".config" "chezmoi" "chezmoi.data.toml") }}
-{{- include (joinPath .chezmoi.homeDir ".config" "chezmoi" "chezmoi.data.toml") -}}
-{{ else }}
-    profile = "home"
-{{- end }}
+    profile = {{ $profile | quote }}
 
 [edit]
 {{ if lookPath "code" -}}
@@ -26,10 +24,10 @@
 {{- end }}
 
 [diff]
-{{ if lookPath "difft" -}}
-{{- include (joinPath .chezmoi.sourceDir ".chezmoi" "diff.difft.toml") -}}
-{{- else if lookPath "delta" -}}
+{{ if lookPath "delta" -}}
 {{- include (joinPath .chezmoi.sourceDir ".chezmoi" "diff.delta.toml") -}}
+{{- else if lookPath "difft" -}}
+{{- include (joinPath .chezmoi.sourceDir ".chezmoi" "diff.difft.toml") -}}
 {{- end }}
 
 [merge]

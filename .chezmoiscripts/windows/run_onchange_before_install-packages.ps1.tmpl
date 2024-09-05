@@ -1,11 +1,7 @@
-
-# skip package discovery during diff
-if ($MyInvocation.Line -contains 'diff') {
-    exit 0
-}
 # check if scoop is installed
 if (!(Get-Command 'scoop' -ErrorAction 'Ignore')) {
-    Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }
 
 $scoopAria = (scoop config aria2-enabled)
@@ -62,7 +58,6 @@ $export.apps | ForEach-Object {
 }
 # install apps
 if ($apps.count -gt 0) {
-    gsudo cache on
     gsudo {
         $args[0].GetEnumerator() | ForEach-Object {
             if ($_.Value.StartsWith('https://')) {
@@ -72,7 +67,6 @@ if ($apps.count -gt 0) {
             }
         }
     } -args $apps
-    gsudo cache off
 }
 
 if ($buckets.Count -ne 0 -or $apps.Count -ne 0) {
