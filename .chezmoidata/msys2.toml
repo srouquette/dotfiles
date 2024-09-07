@@ -17,6 +17,7 @@
         "fzf",
         "jq",
         "ripgrep",
+        "rust",
         "starship",
         "vivid",
         "yazi",

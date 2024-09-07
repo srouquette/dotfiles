@@ -32,11 +32,9 @@ scoop/**
 {{- end }}
 
 {{ if and (ne .subsystem "msys2") (ne .chezmoi.os "linux") -}}
+.chezmoiscripts/rust/*
 .config/bat/*
 .config/tealdeer/*
 .lessfilter
 .nanorc
 {{- end }}
-
-# not ready
-.chezmoiscripts/rust/*
