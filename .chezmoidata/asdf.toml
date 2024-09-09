@@ -2,6 +2,7 @@
     packages = [
         "aws-iam-authenticator",
         "direnv",
+        "gcloud",
         "kops",
         "kubectl",
         "kubectx",

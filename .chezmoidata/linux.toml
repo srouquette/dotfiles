@@ -3,16 +3,16 @@
         "p7zip",
         "bat",
         "dust",
-        "git",
-        "git-delta",
-        "glow",
         "eza",
         "fd",
         "fzf",
-        "jaq",
+        "git",
+        "go",
+        "git-delta",
         "jq",
         "mdcat",
         "nano-syntax-highlighting",
+        "openssh",
         "ripgrep",
         "starship",
         "tealdeer",
@@ -34,6 +34,7 @@
     p7zip = "7z"
     du-dust = "dust"
     git-delta = "delta"
+    openssh = "ssh"
     paper-terminal = "paper"
     ripgrep = "rg"
     tealdeer = "tldr"

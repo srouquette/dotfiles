@@ -18,3 +18,4 @@ create_symlink() {
 
 create_symlink .aws
 create_symlink .ssh
+chmod 600 ~/.ssh/id_rsa
