@@ -8,6 +8,7 @@
         "fzf",
         "git",
         "go",
+        "github-cli",
         "git-delta",
         "jq",
         "mdcat",
@@ -33,6 +34,7 @@
 [linux.bin]
     p7zip = "7z"
     du-dust = "dust"
+    github-cli = "gh"
     git-delta = "delta"
     openssh = "ssh"
     paper-terminal = "paper"

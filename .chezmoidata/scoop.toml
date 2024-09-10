@@ -29,5 +29,6 @@
     "idea" = "extras"
     "maven" = "main"
     "openvpn" = "extras"
+    "putty" = "extras"
     "winscp" = "extras"
     "temurin-lts-jdk" = "java"

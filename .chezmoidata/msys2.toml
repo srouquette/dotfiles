@@ -15,6 +15,7 @@
         "eza",
         "fd",
         "fzf",
+        "github-cli",
         "jq",
         "ripgrep",
         "rust",
@@ -27,6 +28,7 @@
 [msys2.bin]
     7zip = "7z"
     diffutils = "diff"
+    github-cli = "gh"
     openssh = "ssh"
     pactoys = "pacboy"
     paper-terminal = "paper"

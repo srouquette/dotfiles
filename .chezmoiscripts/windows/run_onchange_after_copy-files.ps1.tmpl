@@ -5,8 +5,18 @@ function Copy-File {
         [string]$srcfile,
 
         [Parameter(Mandatory)]
-        [string]$dstfile
+        [string]$dstfile,
+
+        [Parameter()]
+        [string]$ifExists
     )
+
+    if ($ifExists) {
+        $exists = Get-Item $ifExists -ErrorAction SilentlyContinue
+        if ($null -eq $exists) {
+            exit 0
+        }
+    }
 
     $dstitem = Get-Item $dstfile -ErrorAction SilentlyContinue
     if ($null -ne $dstitem) {
@@ -32,6 +42,6 @@ function Copy-File {
     xcopy /fvy "$srcfile" "$dstfile*"
 }
 
-{{- range .windows.copyfiles -}}
-Copy-File {{ .src | quote }} {{ .dst | quote }}
-{{- end -}}
+{{ range .windows.copyfiles }}
+Copy-File {{ .src | quote }} {{ .dst | quote }} {{ .ifExists | quote }}
+{{- end }}
