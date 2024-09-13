@@ -10,6 +10,7 @@
     msystem = [
         "7zip",
         "bat",
+        "chafa",
         "delta",
         "dust",
         "eza",
