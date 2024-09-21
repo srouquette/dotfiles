@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
-packages=( {{ range .linux.packages }}'{{ . }}' {{ end }})
-{{ if eq .profile "work" -}}
-packages+=( {{ range .linux.work }}'{{ . }}' {{ end }})
-{{- end }}
-
-{{ template "is_installed" .linux }}
-
-[ ${#filtered[@]} -eq 0 ] && exit 0
-
 {{ $sudo := "sudo" -}}
 {{ if eq .chezmoi.username "root" -}}
 {{   $sudo = "" -}}
@@ -26,22 +17,29 @@ install_package() {
 }
 {{- end }}
 
-install_package ${filtered[@]}
+### install common packages
 
-# for pkg in "${filtered[@]}"; do
-#   install_package $pkg
-# done
-
-### platform specific packages
-
-{{ if eq .osid "linux-arch" -}}
-packages=( {{ range .linux.packages.arch }}'{{ . }}' {{ end }})
-{{ else if or (eq .osid "linux-ubuntu") (eq .osid "linux-debian") -}}
-packages=( {{ range .linux.packages.ubuntu }}'{{ . }}' {{ end }})
+packages=( {{ range .linux.packages }}'{{ . }}' {{ end }})
+{{ if eq .profile "work" -}}
+packages+=( {{ range .linux.work }}'{{ . }}' {{ end }})
 {{- end }}
 
 {{ template "is_installed" .linux }}
 
-[ ${#filtered[@]} -eq 0 ] && exit 0
+if [ ${#filtered[@]} -ne 0 ]; then
+  install_package ${filtered[@]}
+fi
 
-install_package ${filtered[@]}
+### install platform specific packages
+
+{{ if eq .osid "linux-arch" -}}
+packages=( {{ range .linux.arch }}'{{ . }}' {{ end }})
+{{ else if or (eq .osid "linux-ubuntu") (eq .osid "linux-debian") -}}
+packages=( {{ range .linux.ubuntu }}'{{ . }}' {{ end }})
+{{- end }}
+
+{{ template "is_installed" .linux }}
+
+if [ ${#filtered[@]} -ne 0 ]; then
+  install_package ${filtered[@]}
+fi
