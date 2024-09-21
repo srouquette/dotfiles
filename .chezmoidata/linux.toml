@@ -31,6 +31,12 @@
         "helm",
         "helmfile",
     ]
+    arch = [
+        "base-devel"
+    ]
+    ubuntu = [
+        "build-essential"
+    ]
 
 [linux.bin]
     p7zip = "7z"
@@ -41,3 +47,5 @@
     paper-terminal = "paper"
     ripgrep = "rg"
     tealdeer = "tldr"
+    base-devel = "gcc"
+    build-essential = "gcc"

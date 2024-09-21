@@ -31,3 +31,17 @@ install_package ${filtered[@]}
 # for pkg in "${filtered[@]}"; do
 #   install_package $pkg
 # done
+
+### platform specific packages
+
+{{ if eq .osid "linux-arch" -}}
+packages=( {{ range .linux.packages.arch }}'{{ . }}' {{ end }})
+{{ else if or (eq .osid "linux-ubuntu") (eq .osid "linux-debian") -}}
+packages=( {{ range .linux.packages.ubuntu }}'{{ . }}' {{ end }})
+{{- end }}
+
+{{ template "is_installed" .linux }}
+
+[ ${#filtered[@]} -eq 0 ] && exit 0
+
+install_package ${filtered[@]}
