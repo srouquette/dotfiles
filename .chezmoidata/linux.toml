@@ -1,51 +1,43 @@
 [linux]
-    packages = [
-        "p7zip",
-        "bat",
-        "chafa",
-        "dust",
-        "eza",
-        "fd",
-        "fzf",
-        "git",
-        "go",
-        "github-cli",
-        "git-delta",
-        "jq",
-        "mdcat",
-        "nano-syntax-highlighting",
-        "openssh",
-        "ripgrep",
-        "starship",
-        "tealdeer",
-        "unzip",
-        "vivid",
-        "which",
-        "yazi",
-        "zoxide",
-        "zsh",
-    ]
-    work = [
-        "asdf",
-        "aws-cli",
-        "helm",
-        "helmfile",
-    ]
-    arch = [
-        "base-devel"
-    ]
-    ubuntu = [
-        "build-essential"
-    ]
+packages = [
+    "p7zip",
+    "bat",
+    "chafa",
+    "dust",
+    "eza",
+    "fd",
+    "fzf",
+    "git",
+    "go",
+    "github-cli",
+    "git-delta",
+    "jq",
+    "mdcat",
+    "nano-syntax-highlighting",
+    "openssh",
+    "ripgrep",
+    "starship",
+    "tealdeer",
+    "unzip",
+    "vivid",
+    "which",
+    "yazi",
+    "zoxide",
+    "zed",
+    "zsh",
+]
+work = ["asdf", "aws-cli", "helm", "helmfile"]
+arch = ["base-devel", "paru"]
+debian = ["build-essential"]
 
 [linux.bin]
-    p7zip = "7z"
-    du-dust = "dust"
-    github-cli = "gh"
-    git-delta = "delta"
-    openssh = "ssh"
-    paper-terminal = "paper"
-    ripgrep = "rg"
-    tealdeer = "tldr"
-    base-devel = "gcc"
-    build-essential = "gcc"
+p7zip = "7z"
+du-dust = "dust"
+github-cli = "gh"
+git-delta = "delta"
+openssh = "ssh"
+paper-terminal = "paper"
+ripgrep = "rg"
+tealdeer = "tldr"
+base-devel = "gcc"
+build-essential = "gcc"

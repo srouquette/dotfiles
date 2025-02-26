@@ -10,7 +10,7 @@ set -eufo pipefail
 install_package() {
   {{ $sudo }} pacman -S --needed --noconfirm $* || true
 }
-{{ else if or (eq .osid "linux-ubuntu") (eq .osid "linux-debian") -}}
+{{ else if eq .osid "linux-debian" -}}
 install_package() {
   local apt_cmd=$(command -v apt &>/dev/null && apt || apt-get)
   {{ $sudo }} $apt_cmd install --ignore-missing --yes --force-yes $* || true
@@ -34,8 +34,8 @@ fi
 
 {{ if eq .osid "linux-arch" -}}
 packages=( {{ range .linux.arch }}'{{ . }}' {{ end }})
-{{ else if or (eq .osid "linux-ubuntu") (eq .osid "linux-debian") -}}
-packages=( {{ range .linux.ubuntu }}'{{ . }}' {{ end }})
+{{ else if eq .osid "linux-debian" -}}
+packages=( {{ range .linux.debian }}'{{ . }}' {{ end }})
 {{- end }}
 
 {{ template "is_installed" .linux }}
