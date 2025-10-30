@@ -15,6 +15,10 @@ install_package() {
   local apt_cmd=$(command -v apt &>/dev/null && apt || apt-get)
   {{ $sudo }} $apt_cmd install --ignore-missing --yes --force-yes $* || true
 }
+{{ else if eq .osid "linux-suse" -}}
+install_package() {
+  {{ $sudo }} zypper install --no-confirm --force $* || true
+}
 {{- end }}
 
 ### install common packages
